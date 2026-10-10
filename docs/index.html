@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 코드보안 지킴이 데모 | 한비엣테크</title>
+<meta name="description" content="한비엣테크가 개발 중인 AI 코드보안 지킴이의 검사 결과 화면을 샘플 데이터로 보여 주는 데모입니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="demo.css">
+<script src="demo.js" defer></script>
+</head>
+<body>
+<header class="intro">
+  <div class="wrap">
+    <div class="intro__bar">
+      <span class="brand">한비엣테크</span>
+      <nav class="intro__links" aria-label="바로가기">
+        <a href="https://github.com/hanvietech/ai-code-security-guardian/blob/main/README.ko.md">소개 문서</a>
+        <a href="https://hanvietech.com/#contact">얼리 액세스 신청</a>
+        <a href="en/" lang="en">English</a>
+      </nav>
+    </div>
+    <h1>AI 코드보안 지킴이 데모</h1>
+    <p>코드의 보안 문제를 찾고, AI와 사람이 함께 검토하고, 조직의 정책에 따라 판단하고, 조치한 뒤 다시 확인하는 과정을 하나로 잇는 솔루션입니다.</p>
+    <p class="intro__note"><span class="badge-dev">개발 중</span> 샘플 데이터로 만든 결과 화면입니다. 실제 고객 데이터는 없으며, 출시 제품의 화면과 다를 수 있습니다.</p>
+    <ol class="tour">
+      <li><a href="#dashboard" data-go="dashboard">대시보드</a></li>
+      <li><a href="#project" data-go="project">프로젝트 결과</a></li>
+      <li><a href="#finding" data-go="finding">항목 상세</a></li>
+      <li><a href="#review" data-go="review">AI 검토 확인</a></li>
+    </ol>
+  </div>
+</header>
+
+<main class="stage" id="stage">
+  <div class="wrap">
+    <div class="app">
+      <div class="app__chrome" aria-hidden="true"><span></span><span></span><span></span><em class="app__title">AI 코드보안 지킴이 · 샘플 주식회사</em></div>
+      <nav class="app__nav" aria-label="데모 메뉴">
+        <strong>샘플 주식회사</strong>
+        <a href="#dashboard" data-go="dashboard">대시보드</a>
+        <a href="#review" data-go="review">AI 오탐 추정<span class="count" data-counter="all:ai">3</span></a>
+      </nav>
+
+      <!-- 대시보드 -->
+      <section class="screen" data-screen="dashboard" aria-labelledby="t-dashboard">
+        <h2 id="t-dashboard">프로젝트별 보안 취약점</h2>
+        <p class="lead">마지막으로 끝까지 완료한 검사 기준입니다. 같은 문제는 한 번만 셉니다.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>프로젝트</th><th class="num">비밀값</th><th class="num">시큐어코딩</th><th class="num">오픈소스 취약점</th><th class="num">라이선스</th><th class="num">합계</th><th>마지막 검사</th><th>AI 오탐 추정</th></tr></thead>
+            <tbody>
+              <tr><td><a href="#project">payment-api</a></td><td class="num">1</td><td class="num" data-counter="payment-api:sast">7</td><td class="num">4</td><td class="num">1</td><td class="num"><strong data-counter="payment-api:total">13</strong></td><td>2026-10-10 09:05</td><td><a href="#review"><span data-counter="payment-api:ai">2</span>건</a></td></tr>
+              <tr><td>partner-portal</td><td class="num">0</td><td class="num" data-counter="partner-portal:sast">5</td><td class="num">2</td><td class="num">0</td><td class="num"><strong data-counter="partner-portal:total">7</strong></td><td>2026-10-09 18:42</td><td><a href="#review"><span data-counter="partner-portal:ai">1</span>건</a></td></tr>
+              <tr><td>batch-settlement</td><td class="num">2</td><td class="num">3</td><td class="num">6</td><td class="num">1</td><td class="num"><strong>12</strong></td><td>2026-10-08 11:20</td><td>0건</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="hint">데모에서는 <a href="#project">payment-api</a> 프로젝트의 결과를 열어 볼 수 있습니다.</p>
+      </section>
+
+      <!-- 프로젝트 결과 -->
+      <section class="screen" data-screen="project" aria-labelledby="t-project">
+        <p class="crumb"><a href="#dashboard">대시보드</a> / payment-api</p>
+        <h2 id="t-project">payment-api</h2>
+        <p class="lead">미해결 <strong data-counter="payment-api:total">13</strong>건 · 같은 규칙에 걸린 항목은 한 그룹으로 묶어 보여 줍니다.</p>
+        <div class="tabs" role="tablist" aria-label="범주">
+          <button type="button" role="tab" data-tab="sast" aria-selected="true">시큐어코딩 (<span data-counter="payment-api:sast">7</span>)</button>
+          <button type="button" role="tab" data-tab="oss" aria-selected="false">오픈소스 취약점 (4)</button>
+          <button type="button" role="tab" data-tab="secret" aria-selected="false">비밀값 (1)</button>
+          <button type="button" role="tab" data-tab="license" aria-selected="false">라이선스 (1)</button>
+        </div>
+
+        <div class="panel is-active" data-panel="sast" role="tabpanel">
+          <details class="group" open>
+            <summary><span class="group__name">SQL 쿼리 문자열 결합</span><span class="group__rule">CWE-89</span><span class="sev sev--high">HIGH</span><span>2건</span></summary>
+            <ul>
+              <li><a href="#finding"><code>src/main/java/com/sample/payment/order/OrderRepository.java:48</code></a> <span class="tag tag--new">신규</span></li>
+              <li><code>src/main/java/com/sample/payment/refund/RefundRepository.java:73</code></li>
+            </ul>
+          </details>
+          <details class="group">
+            <summary><span class="group__name">로그에 민감정보 출력</span><span class="group__rule">CWE-532</span><span class="sev sev--medium">MEDIUM</span><span><span data-counter="payment-api:g-log">3</span>건</span></summary>
+            <ul>
+              <li><code>src/main/java/com/sample/payment/PaymentService.java:112</code></li>
+              <li data-fp-item="fp1"><code>src/main/java/com/sample/payment/log/LogMasking.java:21</code> <span class="tag tag--ai">AI 오탐 추정</span></li>
+              <li><code>src/main/java/com/sample/payment/card/CardController.java:88</code></li>
+            </ul>
+          </details>
+          <details class="group">
+            <summary><span class="group__name">경로 조작</span><span class="group__rule">CWE-22</span><span class="sev sev--high">HIGH</span><span><span data-counter="payment-api:g-path">1</span>건</span></summary>
+            <ul>
+              <li data-fp-item="fp2"><code>src/main/java/com/sample/payment/file/FileController.java:57</code> <span class="tag tag--ai">AI 오탐 추정</span></li>
+            </ul>
+          </details>
+          <details class="group">
+            <summary><span class="group__name">예측 가능한 난수 사용</span><span class="group__rule">CWE-330</span><span class="sev sev--medium">MEDIUM</span><span>1건</span></summary>
+            <ul><li><code>src/main/java/com/sample/payment/auth/TokenGenerator.java:19</code></li></ul>
+          </details>
+        </div>
+
+        <div class="panel" data-panel="oss" role="tabpanel">
+          <details class="group" open>
+            <summary><span class="group__name">log4j-core 원격 코드 실행</span><span class="group__rule">CVE-2021-44228</span><span class="sev sev--critical">CRITICAL</span><span>1건</span></summary>
+            <ul><li><code>org.apache.logging.log4j:log4j-core 2.14.1</code> · 수정 버전 2.17.1 이상</li></ul>
+          </details>
+          <details class="group">
+            <summary><span class="group__name">spring-beans 원격 코드 실행</span><span class="group__rule">CVE-2022-22965</span><span class="sev sev--critical">CRITICAL</span><span>1건</span></summary>
+            <ul><li><code>org.springframework:spring-beans 5.3.17</code> · 수정 버전 5.3.18 이상</li></ul>
+          </details>
+          <details class="group">
+            <summary><span class="group__name">commons-text 문자열 치환 원격 코드 실행</span><span class="group__rule">CVE-2022-42889</span><span class="sev sev--critical">CRITICAL</span><span>1건</span></summary>
+            <ul><li><code>org.apache.commons:commons-text 1.9</code> · 수정 버전 1.10.0 이상</li></ul>
+          </details>
+          <details class="group">
+            <summary><span class="group__name">jackson-databind 깊은 중첩 서비스 거부</span><span class="group__rule">CVE-2020-36518</span><span class="sev sev--high">HIGH</span><span>1건</span></summary>
+            <ul><li><code>com.fasterxml.jackson.core:jackson-databind 2.13.1</code> · 수정 버전 2.13.2.1 이상</li></ul>
+          </details>
+        </div>
+
+        <div class="panel" data-panel="secret" role="tabpanel">
+          <details class="group" open>
+            <summary><span class="group__name">클라우드 액세스 키 노출</span><span class="sev sev--critical">CRITICAL</span><span>1건</span></summary>
+            <ul><li><code>src/main/resources/application-prod.yml:12</code> · 값은 가려서 표시합니다 <code>AKIA••••••••</code></li></ul>
+          </details>
+        </div>
+
+        <div class="panel" data-panel="license" role="tabpanel">
+          <details class="group" open>
+            <summary><span class="group__name">강한 카피레프트 라이선스 구성요소</span><span class="group__rule">AGPL-3.0</span><span class="sev sev--high">HIGH</span><span>1건</span></summary>
+            <ul><li><code>com.itextpdf:kernel 7.2.5</code> · 서비스 제공 방식에 따라 소스 공개 의무가 생길 수 있어 법무 검토가 필요합니다.</li></ul>
+          </details>
+        </div>
+        <p class="hint">데모에서는 <a href="#finding">OrderRepository.java:48</a> 항목의 상세 화면을 볼 수 있습니다.</p>
+      </section>
+
+      <!-- 항목 상세 -->
+      <section class="screen" data-screen="finding" aria-labelledby="t-finding">
+        <p class="crumb"><a href="#dashboard">대시보드</a> / <a href="#project">payment-api</a> / 항목 상세</p>
+        <h2 id="t-finding">SQL 쿼리 문자열 결합</h2>
+        <p class="lead"><code>src/main/java/com/sample/payment/order/OrderRepository.java:48</code></p>
+        <div class="detail">
+          <div>
+            <div class="card">
+              <h3>위치</h3>
+<pre class="snippet"><code><span class="ln">46</span>public List&lt;Order&gt; findByCustomer(String customerId) {
+<span class="ln">47</span>    // 고객별 주문 조회
+<span class="hl"><span class="ln">48</span>    String sql = "SELECT * FROM orders WHERE customer_id = '" + customerId + "'";</span><span class="ln">49</span>    return jdbcTemplate.query(sql, orderMapper);
+<span class="ln">50</span>}</code></pre>
+            </div>
+            <div class="card">
+              <h3>왜 위험한지</h3>
+              <p>외부에서 받은 값을 SQL 문장에 그대로 이어 붙이면, 공격자가 값에 SQL 구문을 넣어 다른 고객의 주문을 조회하거나 데이터를 바꿀 수 있습니다.</p>
+            </div>
+            <div class="card">
+              <h3>고치는 방법</h3>
+              <p>값을 문자열로 이어 붙이지 말고 바인딩 변수(<code>?</code>)로 전달하세요. 쿼리 문장과 값이 분리되어 입력값이 SQL 구문으로 해석되지 않습니다.</p>
+            </div>
+          </div>
+          <div>
+            <div class="card">
+              <h3>요약</h3>
+              <dl class="kv">
+                <dt>심각도</dt><dd><span class="sev sev--high">HIGH</span></dd>
+                <dt>범주</dt><dd>시큐어코딩</dd>
+                <dt>분류</dt><dd>CWE-89 SQL 삽입</dd>
+                <dt>상태</dt><dd><span class="tag tag--new">신규</span></dd>
+                <dt>처음 발견</dt><dd>2026-10-10</dd>
+              </dl>
+            </div>
+            <div class="card verdict">
+              <div class="verdict__head"><span class="tag tag--ai">AI 검토</span><span class="verdict__label">정탐</span></div>
+              <p><code>customerId</code>가 요청 값에서 검증 없이 SQL 문장으로 들어갑니다. 실제로 악용될 수 있는 위치로 판단했습니다.</p>
+              <h3 style="margin-top:14px">제안 수정</h3>
+<pre class="snippet"><code><span class="del">- String sql = "SELECT * FROM orders WHERE customer_id = '" + customerId + "'";</span>
+<span class="del">- return jdbcTemplate.query(sql, orderMapper);</span>
+<span class="add">+ String sql = "SELECT * FROM orders WHERE customer_id = ?";</span>
+<span class="add">+ return jdbcTemplate.query(sql, orderMapper, customerId);</span></code></pre>
+              <p class="sub" style="margin-top:10px">AI 판정은 제안입니다. 최종 결정은 담당자가 합니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI 검토 확인 -->
+      <section class="screen" data-screen="review" aria-labelledby="t-review">
+        <h2 id="t-review">AI 오탐 추정</h2>
+        <p class="lead">AI가 오탐으로 추정한 항목입니다. 담당자가 근거를 보고 확인하면 집계에서 빠집니다.</p>
+        <form data-review-form data-done="{n}건을 오탐으로 확인했습니다. 대시보드 숫자가 함께 줄었습니다." data-none="확인할 항목을 선택하세요.">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>선택</th><th>프로젝트</th><th>항목</th><th>AI 판단 근거</th></tr></thead>
+              <tbody>
+                <tr data-fp="fp1" data-dec="payment-api:sast payment-api:total payment-api:ai all:ai payment-api:g-log"><td><input type="checkbox" aria-label="선택"></td><td>payment-api</td><td>로그에 민감정보 출력<br><code class="sub">LogMasking.java:21</code></td><td>출력 전에 카드번호를 앞 6자리와 뒤 4자리만 남기고 가립니다.</td></tr>
+                <tr data-fp="fp2" data-dec="payment-api:sast payment-api:total payment-api:ai all:ai payment-api:g-path"><td><input type="checkbox" aria-label="선택"></td><td>payment-api</td><td>경로 조작<br><code class="sub">FileController.java:57</code></td><td>파일 이름을 허용 목록과 대조한 뒤에만 경로에 씁니다.</td></tr>
+                <tr data-fp="fp3" data-dec="partner-portal:sast partner-portal:total partner-portal:ai all:ai"><td><input type="checkbox" aria-label="선택"></td><td>partner-portal</td><td>검증 없는 HTML 삽입<br><code class="sub">NoticeView.tsx:34</code></td><td>삽입하기 전에 허용된 태그만 남기도록 정제합니다.</td></tr>
+                <tr data-empty hidden><td colspan="4">확인할 항목이 없습니다.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="actions">
+            <button class="btn btn--primary" type="submit">선택 확인</button>
+            <button class="btn" type="submit" name="all">모두 확인</button>
+            <span class="status" data-status role="status"></span>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">© 2026 Hanvietech (한비엣테크) · <a href="https://hanvietech.com">hanvietech.com</a> · 샘플 데이터로 만든 데모입니다.</div>
+</footer>
+</body>
+</html>

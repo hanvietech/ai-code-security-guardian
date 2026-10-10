@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Code Security Guardian Demo | Hanvietech</title>
+<meta name="description" content="A demo of the result screens of AI Code Security Guardian, a product in development at Hanvietech, built with sample data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<script src="../demo.js" defer></script>
+</head>
+<body>
+<header class="intro">
+  <div class="wrap">
+    <div class="intro__bar">
+      <span class="brand">Hanvietech</span>
+      <nav class="intro__links" aria-label="Links">
+        <a href="https://github.com/hanvietech/ai-code-security-guardian">Overview</a>
+        <a href="https://hanvietech.com/en/#contact">Request early access</a>
+        <a href="../" lang="ko">한국어</a>
+      </nav>
+    </div>
+    <h1>AI Code Security Guardian Demo</h1>
+    <p>A product that connects the whole process in one workflow: finding security issues in code, reviewing them with AI and people together, deciding according to your organization's policy, and verifying again after the fix.</p>
+    <p class="intro__note"><span class="badge-dev">In development</span> Result screens built with sample data. No real customer data is shown, and the released product may look different.</p>
+    <ol class="tour">
+      <li><a href="#dashboard" data-go="dashboard">Dashboard</a></li>
+      <li><a href="#project" data-go="project">Project results</a></li>
+      <li><a href="#finding" data-go="finding">Finding detail</a></li>
+      <li><a href="#review" data-go="review">AI review</a></li>
+    </ol>
+  </div>
+</header>
+
+<main class="stage" id="stage">
+  <div class="wrap">
+    <div class="app">
+      <div class="app__chrome" aria-hidden="true"><span></span><span></span><span></span><em class="app__title">AI Code Security Guardian · Sample Inc.</em></div>
+      <nav class="app__nav" aria-label="Demo menu">
+        <strong>Sample Inc.</strong>
+        <a href="#dashboard" data-go="dashboard">Dashboard</a>
+        <a href="#review" data-go="review">AI false positives<span class="count" data-counter="all:ai">3</span></a>
+      </nav>
+
+      <!-- Dashboard -->
+      <section class="screen" data-screen="dashboard" aria-labelledby="t-dashboard">
+        <h2 id="t-dashboard">Security findings by project</h2>
+        <p class="lead">Based on the last completed scan. The same issue is counted once.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Project</th><th class="num">Secrets</th><th class="num">Secure coding</th><th class="num">Open source vulns</th><th class="num">Licenses</th><th class="num">Total</th><th>Last scan</th><th>AI false positives</th></tr></thead>
+            <tbody>
+              <tr><td><a href="#project">payment-api</a></td><td class="num">1</td><td class="num" data-counter="payment-api:sast">7</td><td class="num">4</td><td class="num">1</td><td class="num"><strong data-counter="payment-api:total">13</strong></td><td>2026-10-10 09:05</td><td><a href="#review"><span data-counter="payment-api:ai">2</span></a></td></tr>
+              <tr><td>partner-portal</td><td class="num">0</td><td class="num" data-counter="partner-portal:sast">5</td><td class="num">2</td><td class="num">0</td><td class="num"><strong data-counter="partner-portal:total">7</strong></td><td>2026-10-09 18:42</td><td><a href="#review"><span data-counter="partner-portal:ai">1</span></a></td></tr>
+              <tr><td>batch-settlement</td><td class="num">2</td><td class="num">3</td><td class="num">6</td><td class="num">1</td><td class="num"><strong>12</strong></td><td>2026-10-08 11:20</td><td>0</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="hint">In this demo, you can open the results of the <a href="#project">payment-api</a> project.</p>
+      </section>
+
+      <!-- Project results -->
+      <section class="screen" data-screen="project" aria-labelledby="t-project">
+        <p class="crumb"><a href="#dashboard">Dashboard</a> / payment-api</p>
+        <h2 id="t-project">payment-api</h2>
+        <p class="lead"><strong data-counter="payment-api:total">13</strong> open findings · Findings from the same rule are grouped together.</p>
+        <div class="tabs" role="tablist" aria-label="Category">
+          <button type="button" role="tab" data-tab="sast" aria-selected="true">Secure coding (<span data-counter="payment-api:sast">7</span>)</button>
+          <button type="button" role="tab" data-tab="oss" aria-selected="false">Open source vulns (4)</button>
+          <button type="button" role="tab" data-tab="secret" aria-selected="false">Secrets (1)</button>
+          <button type="button" role="tab" data-tab="license" aria-selected="false">Licenses (1)</button>
+        </div>
+
+        <div class="panel is-active" data-panel="sast" role="tabpanel">
+          <details class="group" open>
+            <summary><span class="group__name">SQL query built by string concatenation</span><span class="group__rule">CWE-89</span><span class="sev sev--high">HIGH</span><span>2</span></summary>
+            <ul>
+              <li><a href="#finding"><code>src/main/java/com/sample/payment/order/OrderRepository.java:48</code></a> <span class="tag tag--new">New</span></li>
+              <li><code>src/main/java/com/sample/payment/refund/RefundRepository.java:73</code></li>
+            </ul>
+          </details>
+          <details class="group">
+            <summary><span class="group__name">Sensitive data written to logs</span><span class="group__rule">CWE-532</span><span class="sev sev--medium">MEDIUM</span><span data-counter="payment-api:g-log">3</span></summary>
+            <ul>
+              <li><code>src/main/java/com/sample/payment/PaymentService.java:112</code></li>
+              <li data-fp-item="fp1"><code>src/main/java/com/sample/payment/log/LogMasking.java:21</code> <span class="tag tag--ai">AI: likely false positive</span></li>
+              <li><code>src/main/java/com/sample/payment/card/CardController.java:88</code></li>
+            </ul>
+          </details>
+          <details class="group">
+            <summary><span class="group__name">Path traversal</span><span class="group__rule">CWE-22</span><span class="sev sev--high">HIGH</span><span data-counter="payment-api:g-path">1</span></summary>
+            <ul>
+              <li data-fp-item="fp2"><code>src/main/java/com/sample/payment/file/FileController.java:57</code> <span class="tag tag--ai">AI: likely false positive</span></li>
+            </ul>
+          </details>
+          <details class="group">
+            <summary><span class="group__name">Predictable random values</span><span class="group__rule">CWE-330</span><span class="sev sev--medium">MEDIUM</span><span>1</span></summary>
+            <ul><li><code>src/main/java/com/sample/payment/auth/TokenGenerator.java:19</code></li></ul>
+          </details>
+        </div>
+
+        <div class="panel" data-panel="oss" role="tabpanel">
+          <details class="group" open>
+            <summary><span class="group__name">log4j-core remote code execution</span><span class="group__rule">CVE-2021-44228</span><span class="sev sev--critical">CRITICAL</span><span>1</span></summary>
+            <ul><li><code>org.apache.logging.log4j:log4j-core 2.14.1</code> · Upgrade to 2.17.1 or later</li></ul>
+          </details>
+          <details class="group">
+            <summary><span class="group__name">spring-beans remote code execution</span><span class="group__rule">CVE-2022-22965</span><span class="sev sev--critical">CRITICAL</span><span>1</span></summary>
+            <ul><li><code>org.springframework:spring-beans 5.3.17</code> · Upgrade to 5.3.18 or later</li></ul>
+          </details>
+          <details class="group">
+            <summary><span class="group__name">commons-text string interpolation remote code execution</span><span class="group__rule">CVE-2022-42889</span><span class="sev sev--critical">CRITICAL</span><span>1</span></summary>
+            <ul><li><code>org.apache.commons:commons-text 1.9</code> · Upgrade to 1.10.0 or later</li></ul>
+          </details>
+          <details class="group">
+            <summary><span class="group__name">jackson-databind denial of service via deep nesting</span><span class="group__rule">CVE-2020-36518</span><span class="sev sev--high">HIGH</span><span>1</span></summary>
+            <ul><li><code>com.fasterxml.jackson.core:jackson-databind 2.13.1</code> · Upgrade to 2.13.2.1 or later</li></ul>
+          </details>
+        </div>
+
+        <div class="panel" data-panel="secret" role="tabpanel">
+          <details class="group" open>
+            <summary><span class="group__name">Exposed cloud access key</span><span class="sev sev--critical">CRITICAL</span><span>1</span></summary>
+            <ul><li><code>src/main/resources/application-prod.yml:12</code> · Shown masked <code>AKIA••••••••</code></li></ul>
+          </details>
+        </div>
+
+        <div class="panel" data-panel="license" role="tabpanel">
+          <details class="group" open>
+            <summary><span class="group__name">Strong copyleft component</span><span class="group__rule">AGPL-3.0</span><span class="sev sev--high">HIGH</span><span>1</span></summary>
+            <ul><li><code>com.itextpdf:kernel 7.2.5</code> · Depending on how the service is offered, source disclosure may be required. Legal review is recommended.</li></ul>
+          </details>
+        </div>
+        <p class="hint">In this demo, you can open the detail of <a href="#finding">OrderRepository.java:48</a>.</p>
+      </section>
+
+      <!-- Finding detail -->
+      <section class="screen" data-screen="finding" aria-labelledby="t-finding">
+        <p class="crumb"><a href="#dashboard">Dashboard</a> / <a href="#project">payment-api</a> / Finding</p>
+        <h2 id="t-finding">SQL query built by string concatenation</h2>
+        <p class="lead"><code>src/main/java/com/sample/payment/order/OrderRepository.java:48</code></p>
+        <div class="detail">
+          <div>
+            <div class="card">
+              <h3>Location</h3>
+<pre class="snippet"><code><span class="ln">46</span>public List&lt;Order&gt; findByCustomer(String customerId) {
+<span class="ln">47</span>    // Orders by customer
+<span class="hl"><span class="ln">48</span>    String sql = "SELECT * FROM orders WHERE customer_id = '" + customerId + "'";</span><span class="ln">49</span>    return jdbcTemplate.query(sql, orderMapper);
+<span class="ln">50</span>}</code></pre>
+            </div>
+            <div class="card">
+              <h3>Why it matters</h3>
+              <p>When external input is concatenated into a SQL statement, an attacker can inject SQL into that input to read other customers' orders or change data.</p>
+            </div>
+            <div class="card">
+              <h3>How to fix it</h3>
+              <p>Pass values as bind parameters (<code>?</code>) instead of concatenating strings. The statement and the values stay separate, so input is never interpreted as SQL.</p>
+            </div>
+          </div>
+          <div>
+            <div class="card">
+              <h3>Summary</h3>
+              <dl class="kv">
+                <dt>Severity</dt><dd><span class="sev sev--high">HIGH</span></dd>
+                <dt>Category</dt><dd>Secure coding</dd>
+                <dt>Type</dt><dd>CWE-89 SQL injection</dd>
+                <dt>Status</dt><dd><span class="tag tag--new">New</span></dd>
+                <dt>First seen</dt><dd>2026-10-10</dd>
+              </dl>
+            </div>
+            <div class="card verdict">
+              <div class="verdict__head"><span class="tag tag--ai">AI review</span><span class="verdict__label">True positive</span></div>
+              <p><code>customerId</code> flows from the request into the SQL statement without validation. This location can be exploited.</p>
+              <h3 style="margin-top:14px">Suggested fix</h3>
+<pre class="snippet"><code><span class="del">- String sql = "SELECT * FROM orders WHERE customer_id = '" + customerId + "'";</span>
+<span class="del">- return jdbcTemplate.query(sql, orderMapper);</span>
+<span class="add">+ String sql = "SELECT * FROM orders WHERE customer_id = ?";</span>
+<span class="add">+ return jdbcTemplate.query(sql, orderMapper, customerId);</span></code></pre>
+              <p class="sub" style="margin-top:10px">AI judgments are suggestions. A reviewer makes the final call.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI review -->
+      <section class="screen" data-screen="review" aria-labelledby="t-review">
+        <h2 id="t-review">AI false positives</h2>
+        <p class="lead">Findings that AI judged likely to be false positives. Once a reviewer confirms them against the evidence, they are removed from the counts.</p>
+        <form data-review-form data-done="Confirmed {n} as false positives. The dashboard counts went down too." data-none="Select the findings to confirm.">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Select</th><th>Project</th><th>Finding</th><th>AI evidence</th></tr></thead>
+              <tbody>
+                <tr data-fp="fp1" data-dec="payment-api:sast payment-api:total payment-api:ai all:ai payment-api:g-log"><td><input type="checkbox" aria-label="Select"></td><td>payment-api</td><td>Sensitive data written to logs<br><code class="sub">LogMasking.java:21</code></td><td>The card number is masked to the first 6 and last 4 digits before logging.</td></tr>
+                <tr data-fp="fp2" data-dec="payment-api:sast payment-api:total payment-api:ai all:ai payment-api:g-path"><td><input type="checkbox" aria-label="Select"></td><td>payment-api</td><td>Path traversal<br><code class="sub">FileController.java:57</code></td><td>The file name is checked against an allowlist before it is used in a path.</td></tr>
+                <tr data-fp="fp3" data-dec="partner-portal:sast partner-portal:total partner-portal:ai all:ai"><td><input type="checkbox" aria-label="Select"></td><td>partner-portal</td><td>Unsanitized HTML insertion<br><code class="sub">NoticeView.tsx:34</code></td><td>The HTML is sanitized to allowed tags before insertion.</td></tr>
+                <tr data-empty hidden><td colspan="4">Nothing left to confirm.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="actions">
+            <button class="btn btn--primary" type="submit">Confirm selected</button>
+            <button class="btn" type="submit" name="all">Confirm all</button>
+            <span class="status" data-status role="status"></span>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">© 2026 Hanvietech · <a href="https://hanvietech.com/en/">hanvietech.com</a> · A demo built with sample data.</div>
+</footer>
+</body>
+</html>
