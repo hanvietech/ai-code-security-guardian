@@ -6,7 +6,7 @@ A product that connects the whole process in one workflow: finding security issu
 
 > **In development.** This repository holds public documentation: a product overview and how to use it. The product source code is not public. Features and structure described here may change.
 
-**[See the demo](https://hanvietech.github.io/ai-code-security-guardian/en/)** · Result screens built with sample data. No real customer data is shown.
+**[See the demo](https://demo.hanvietech.com/en/)** · Result screens built with sample data. No real customer data is shown.
 
 ## How it works
 
