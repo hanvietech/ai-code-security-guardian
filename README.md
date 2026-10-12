@@ -49,6 +49,8 @@ When the scan finishes, the results appear on the security reviewer's dashboard.
 
 To receive a pre-release demo and details, choose Jikimi early access in the [contact form on hanvietech.com](https://hanvietech.com/en/#contact), or email [ceo@hanvietech.com](mailto:ceo@hanvietech.com).
 
+Sister product: [Doumi](https://github.com/hanvietech/doumi-docs) — AI web vulnerability testing agent
+
 ---
 
 © 2026 Hanvietech. All rights reserved.

@@ -49,6 +49,8 @@ Jikimi(지키미)는 코드의 보안 문제를 찾고, AI와 사람이 함께 �
 
 출시 전 시연과 상세 내용을 받아 보시려면 [hanvietech.com의 문의 양식](https://hanvietech.com/#contact)에서 Jikimi 얼리 액세스를 선택해 남겨 주세요. 이메일 [ceo@hanvietech.com](mailto:ceo@hanvietech.com)으로도 받습니다.
 
+자매 제품: [Doumi](https://github.com/hanvietech/doumi-docs) — AI 웹취약점 점검 에이전트
+
 ---
 
 © 2026 Hanvietech (한비엣테크). All rights reserved.
