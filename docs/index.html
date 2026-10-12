@@ -4,14 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Jikimi 데모 | 한비엣테크</title>
-<meta name="description" content="한비엣테크가 출시를 준비하고 있는 AI 코드보안 에이전트 Jikimi의 검사 결과 화면을 샘플 데이터로 보여 주는 데모입니다.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<meta name="description" content="한비엣테크가 출시를 준비하고 있는 AI 코드보안 에이전트 Jikimi의 화면을 샘플 데이터로 보여 주는 데모입니다.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="icon" href="brand/jikimi-app-icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="demo.css">
 <script src="demo.js" defer></script>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H9l2 2h8.5A1.5 1.5 0 0 1 21 8.5v10a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3M15 8l2 2"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5 5h14l2 8v6H3v-6z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 18 4-6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 19 6v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></symbol>
+</svg>
+
 <header class="intro">
   <div class="wrap">
     <div class="intro__bar">
@@ -23,13 +37,14 @@
       </nav>
     </div>
     <h1><img src="brand/jikimi-symbol-on-dark.svg" width="40" height="40" alt="">Jikimi 데모</h1>
-    <p>코드의 보안 문제를 찾고, AI와 사람이 함께 검토하고, 조직의 정책에 따라 판단하고, 조치한 뒤 다시 확인하는 과정을 하나로 잇는 AI 코드보안 에이전트입니다.</p>
-    <p class="intro__note"><span class="badge-soon">출시 예정</span> 샘플 데이터로 만든 결과 화면입니다. 실제 고객 데이터는 없으며, 출시 제품의 화면과 다를 수 있습니다.</p>
+    <p>AI 서비스를 활용해 코드의 보안 문제를 찾고 판단을 돕는 보안 에이전트입니다. 개발자 PC의 에이전트가 코드를 검사하고, AI가 오탐 여부와 고치는 방법을 제안하면 담당자가 결정합니다.</p>
+    <p class="intro__note"><span class="badge-soon">출시 예정</span> 샘플 데이터로 만든 화면입니다. 실제 고객 데이터는 없으며, 출시 제품의 화면과 다를 수 있습니다. 화면에서 누른 결정은 이 페이지 안에서만 바뀝니다.</p>
     <ol class="tour">
-      <li><a href="#dashboard" data-go="dashboard">대시보드</a></li>
-      <li><a href="#project" data-go="project">프로젝트 결과</a></li>
-      <li><a href="#finding" data-go="finding">항목 상세</a></li>
-      <li><a href="#review" data-go="review">AI 검토 확인</a></li>
+      <li><a href="#home" data-go="home">홈</a></li>
+      <li><a href="#project" data-go="project">프로젝트</a></li>
+      <li><a href="#finding" data-go="finding">발견 항목 상세</a></li>
+      <li><a href="#inbox" data-go="inbox">검토함</a></li>
+      <li><a href="#agents" data-go="agents">에이전트 설치</a></li>
     </ol>
   </div>
 </header>
@@ -37,176 +52,404 @@
 <main class="stage" id="stage">
   <div class="wrap">
     <div class="app">
-      <div class="app__chrome" aria-hidden="true"><span></span><span></span><span></span><em class="app__title">Jikimi · 샘플 주식회사</em></div>
-      <nav class="app__nav" aria-label="데모 메뉴">
-        <strong>샘플 주식회사</strong>
-        <a href="#dashboard" data-go="dashboard">대시보드</a>
-        <a href="#review" data-go="review">AI 오탐 추정<span class="count" data-counter="all:ai">3</span></a>
+      <nav class="side" aria-label="데모 메뉴">
+        <div class="side__logo"><img src="brand/jikimi-symbol-on-dark.svg" width="28" height="28" alt="">Jikimi</div>
+        <a href="#home" data-go="home"><svg class="icon"><use href="#i-home"/></svg>홈</a>
+        <a href="#project" data-go="project"><svg class="icon"><use href="#i-folder"/></svg>프로젝트</a>
+        <div class="side__group">발견 항목</div>
+        <span class="static"><svg class="icon"><use href="#i-key"/></svg>민감정보<span class="num" data-counter="cat:secret">3</span></span>
+        <span class="static"><svg class="icon"><use href="#i-box"/></svg>라이브러리<span class="num" data-counter="cat:sca">12</span></span>
+        <span class="static"><svg class="icon"><use href="#i-code"/></svg>시큐어코드<span class="num" data-counter="cat:sast">15</span></span>
+        <span class="static"><svg class="icon"><use href="#i-file"/></svg>라이센스<span class="num" data-counter="cat:license">2</span></span>
+        <div class="side__rule"></div>
+        <a href="#inbox" data-go="inbox"><svg class="icon"><use href="#i-inbox"/></svg>검토함<span class="badge" data-counter="inbox">5</span></a>
+        <div class="side__group">검사 운영</div>
+        <a href="#agents" data-go="agents"><svg class="icon"><use href="#i-gauge"/></svg>에이전트</a>
       </nav>
 
-      <!-- 대시보드 -->
-      <section class="screen" data-screen="dashboard" aria-labelledby="t-dashboard">
-        <h2 id="t-dashboard">프로젝트별 보안 취약점</h2>
-        <p class="lead">마지막으로 끝까지 완료한 검사 기준입니다. 같은 문제는 한 번만 셉니다.</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>프로젝트</th><th class="num">비밀값</th><th class="num">시큐어코딩</th><th class="num">오픈소스 취약점</th><th class="num">라이선스</th><th class="num">합계</th><th>마지막 검사</th><th>AI 오탐 추정</th></tr></thead>
-            <tbody>
-              <tr><td><a href="#project">payment-api</a></td><td class="num">1</td><td class="num" data-counter="payment-api:sast">7</td><td class="num">4</td><td class="num">1</td><td class="num"><strong data-counter="payment-api:total">13</strong></td><td>2026-10-10 09:05</td><td><a href="#review"><span data-counter="payment-api:ai">2</span>건</a></td></tr>
-              <tr><td>partner-portal</td><td class="num">0</td><td class="num" data-counter="partner-portal:sast">5</td><td class="num">2</td><td class="num">0</td><td class="num"><strong data-counter="partner-portal:total">7</strong></td><td>2026-10-09 18:42</td><td><a href="#review"><span data-counter="partner-portal:ai">1</span>건</a></td></tr>
-              <tr><td>batch-settlement</td><td class="num">2</td><td class="num">3</td><td class="num">6</td><td class="num">1</td><td class="num"><strong>12</strong></td><td>2026-10-08 11:20</td><td>0건</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="hint">데모에서는 <a href="#project">payment-api</a> 프로젝트의 결과를 열어 볼 수 있습니다.</p>
-      </section>
-
-      <!-- 프로젝트 결과 -->
-      <section class="screen" data-screen="project" aria-labelledby="t-project">
-        <p class="crumb"><a href="#dashboard">대시보드</a> / payment-api</p>
-        <h2 id="t-project">payment-api</h2>
-        <p class="lead">미해결 <strong data-counter="payment-api:total">13</strong>건 · 같은 규칙에 걸린 항목은 한 그룹으로 묶어 보여 줍니다.</p>
-        <div class="tabs" role="tablist" aria-label="범주">
-          <button type="button" role="tab" data-tab="sast" aria-selected="true">시큐어코딩 (<span data-counter="payment-api:sast">7</span>)</button>
-          <button type="button" role="tab" data-tab="oss" aria-selected="false">오픈소스 취약점 (4)</button>
-          <button type="button" role="tab" data-tab="secret" aria-selected="false">비밀값 (1)</button>
-          <button type="button" role="tab" data-tab="license" aria-selected="false">라이선스 (1)</button>
+      <div class="main">
+        <div class="topbar">
+          <span class="topbar__tenant">샘플 주식회사</span>
+          <span class="topbar__search">프로젝트 · 패키지 · CVE 검색</span>
+          <span class="topbar__user">security@sample.example</span>
         </div>
 
-        <div class="panel is-active" data-panel="sast" role="tabpanel">
-          <details class="group" open>
-            <summary><span class="group__name">SQL 쿼리 문자열 결합</span><span class="group__rule">CWE-89</span><span class="sev sev--high">HIGH</span><span>2건</span></summary>
-            <ul>
-              <li><a href="#finding"><code>src/main/java/com/sample/payment/order/OrderRepository.java:48</code></a> <span class="tag tag--new">신규</span></li>
-              <li><code>src/main/java/com/sample/payment/refund/RefundRepository.java:73</code></li>
-            </ul>
-          </details>
-          <details class="group">
-            <summary><span class="group__name">로그에 민감정보 출력</span><span class="group__rule">CWE-532</span><span class="sev sev--medium">MEDIUM</span><span><span data-counter="payment-api:g-log">3</span>건</span></summary>
-            <ul>
-              <li><code>src/main/java/com/sample/payment/PaymentService.java:112</code></li>
-              <li data-fp-item="fp1"><code>src/main/java/com/sample/payment/log/LogMasking.java:21</code> <span class="tag tag--ai">AI 오탐 추정</span></li>
-              <li><code>src/main/java/com/sample/payment/card/CardController.java:88</code></li>
-            </ul>
-          </details>
-          <details class="group">
-            <summary><span class="group__name">경로 조작</span><span class="group__rule">CWE-22</span><span class="sev sev--high">HIGH</span><span><span data-counter="payment-api:g-path">1</span>건</span></summary>
-            <ul>
-              <li data-fp-item="fp2"><code>src/main/java/com/sample/payment/file/FileController.java:57</code> <span class="tag tag--ai">AI 오탐 추정</span></li>
-            </ul>
-          </details>
-          <details class="group">
-            <summary><span class="group__name">예측 가능한 난수 사용</span><span class="group__rule">CWE-330</span><span class="sev sev--medium">MEDIUM</span><span>1건</span></summary>
-            <ul><li><code>src/main/java/com/sample/payment/auth/TokenGenerator.java:19</code></li></ul>
-          </details>
-        </div>
+        <!-- 홈 -->
+        <section class="screen" data-screen="home" aria-labelledby="t-home">
+          <div class="head">
+            <h2 id="t-home">오늘 할 일</h2>
+            <p class="lead">마지막 완료 검사 2026-10-10 09:05 · 프로젝트 3개 · 미해결 <span data-counter="all:total">32</span>건</p>
+          </div>
+          <div class="body">
+            <div class="kpis">
+              <div class="card kpi">
+                <span class="kpi__label"><svg class="icon"><use href="#i-check"/></svg>검토 대기</span>
+                <span class="kpi__value"><span data-counter="inbox">5</span><small>건</small></span>
+                <p>AI 오탐 제안 <span data-counter="inbox:ai">3</span> · 코드 변경 재검토 <span data-counter="inbox:recheck">1</span> · 위험 수용 만료 <span data-counter="inbox:expire">1</span></p>
+                <a class="link" href="#inbox">검토함 열기 →</a>
+              </div>
+              <div class="card kpi">
+                <span class="kpi__label"><svg class="icon"><use href="#i-shield"/></svg>유효한 민감정보</span>
+                <span class="kpi__value">1<small>건</small></span>
+                <p>실제로 동작하는 키입니다. 먼저 폐기·교체하세요.</p>
+                <a class="link" href="#project" data-open-tab="project:secret">민감정보 보기 →</a>
+              </div>
+              <div class="card kpi">
+                <span class="kpi__label"><svg class="icon"><use href="#i-up"/></svg>버전만 올리면 해결</span>
+                <span class="kpi__value">9<small>건</small></span>
+                <p>고칠 버전이 있는 미해결 라이브러리 취약점입니다.</p>
+                <a class="link" href="#project" data-open-tab="project:sca">라이브러리 보기 →</a>
+              </div>
+              <div class="card kpi">
+                <span class="kpi__label"><svg class="icon"><use href="#i-alert"/></svg>검사 문제 프로젝트</span>
+                <span class="kpi__value">1<small>개</small></span>
+                <p>검사 실패·검사 필요·오래된 검사를 확인하세요.</p>
+                <a class="link" href="#agents">검사 운영 보기 →</a>
+              </div>
+            </div>
 
-        <div class="panel" data-panel="oss" role="tabpanel">
-          <details class="group" open>
-            <summary><span class="group__name">log4j-core 원격 코드 실행</span><span class="group__rule">CVE-2021-44228</span><span class="sev sev--critical">CRITICAL</span><span>1건</span></summary>
-            <ul><li><code>org.apache.logging.log4j:log4j-core 2.14.1</code> · 수정 버전 2.17.1 이상</li></ul>
-          </details>
-          <details class="group">
-            <summary><span class="group__name">spring-beans 원격 코드 실행</span><span class="group__rule">CVE-2022-22965</span><span class="sev sev--critical">CRITICAL</span><span>1건</span></summary>
-            <ul><li><code>org.springframework:spring-beans 5.3.17</code> · 수정 버전 5.3.18 이상</li></ul>
-          </details>
-          <details class="group">
-            <summary><span class="group__name">commons-text 문자열 치환 원격 코드 실행</span><span class="group__rule">CVE-2022-42889</span><span class="sev sev--critical">CRITICAL</span><span>1건</span></summary>
-            <ul><li><code>org.apache.commons:commons-text 1.9</code> · 수정 버전 1.10.0 이상</li></ul>
-          </details>
-          <details class="group">
-            <summary><span class="group__name">jackson-databind 깊은 중첩 서비스 거부</span><span class="group__rule">CVE-2020-36518</span><span class="sev sev--high">HIGH</span><span>1건</span></summary>
-            <ul><li><code>com.fasterxml.jackson.core:jackson-databind 2.13.1</code> · 수정 버전 2.13.2.1 이상</li></ul>
-          </details>
-        </div>
+            <div class="home-row">
+              <div class="card">
+                <h3>지금 처리할 항목</h3>
+                <p class="card__sub">우선순위 순</p>
+                <ul class="todo">
+                  <li><span class="sev sev--critical">CRITICAL</span><span class="todo__main"><strong>클라우드 액세스 키 노출</strong><span class="sub">payment-api · application-prod.yml:12</span></span><span class="todo__why">유효한 키</span><a class="link" href="#project" data-open-tab="project:secret">열기</a></li>
+                  <li><span class="sev sev--critical">CRITICAL</span><span class="todo__main"><strong>log4j-core 원격 코드 실행</strong><span class="sub">payment-api · log4j-core 2.14.1</span></span><span class="todo__why">버전만 올리면 해결</span><a class="link" href="#project" data-open-tab="project:sca">열기</a></li>
+                  <li><span class="sev sev--high">HIGH</span><span class="todo__main"><strong>SQL 쿼리 문자열 결합</strong><span class="sub">payment-api · OrderRepository.java:48</span></span><span class="todo__why">신규</span><a class="link" href="#finding">열기</a></li>
+                  <li><span class="sev sev--medium">MEDIUM</span><span class="todo__main"><strong>약한 해시 알고리즘 사용</strong><span class="sub">batch-settlement · HashUtil.java:31</span></span><span class="todo__why">위험 수용 만료</span><a class="link" href="#inbox" data-open-tab="inbox:expire">열기</a></li>
+                </ul>
+              </div>
+              <div>
+                <div class="card">
+                  <h3>범주별 미해결</h3>
+                  <div class="bars">
+                    <span>민감정보</span><span class="bar"><span style="width:20%"></span></span><span class="n" data-counter="cat:secret">3</span>
+                    <span>라이브러리</span><span class="bar"><span style="width:80%"></span></span><span class="n" data-counter="cat:sca">12</span>
+                    <span>시큐어코드</span><span class="bar"><span style="width:100%"></span></span><span class="n" data-counter="cat:sast">15</span>
+                    <span>라이센스</span><span class="bar"><span style="width:13%"></span></span><span class="n" data-counter="cat:license">2</span>
+                  </div>
+                </div>
+                <div class="card">
+                  <h3>미해결 추이 · 30일</h3>
+                  <svg class="trend" viewBox="0 0 300 112" role="img" aria-label="30일 동안 미해결 항목이 48건까지 늘었다가 32건으로 줄었습니다.">
+                    <line x1="12" y1="100" x2="292" y2="100" stroke="#E5E5E5"/>
+                    <line x1="12" y1="30" x2="292" y2="30" stroke="#F0F0F0" stroke-dasharray="3 3"/>
+                    <polyline fill="none" stroke="#4338CA" stroke-width="2" stroke-linejoin="round" points="12.0,54.5 21.6,54.5 31.2,51.0 40.8,44.0 50.4,44.0 60.0,47.5 69.6,47.5 79.2,37.0 88.8,37.0 98.4,40.5 108.0,40.5 117.6,44.0 127.2,30.0 136.8,30.0 146.4,33.5 156.0,33.5 165.6,37.0 175.2,40.5 184.8,40.5 194.4,44.0 204.0,58.0 213.6,58.0 223.2,61.5 232.8,65.0 242.4,65.0 252.0,72.0 261.6,75.5 271.2,75.5 280.8,82.5 290.4,86.0"/>
+                    <text x="12" y="111" font-size="9" fill="#8C8C8C">09-11</text>
+                    <text x="292" y="111" font-size="9" fill="#8C8C8C" text-anchor="end">10-10</text>
+                    <text x="14" y="26" font-size="9" fill="#8C8C8C">48</text>
+                  </svg>
+                  <div class="legend"><span><i style="background:#4338CA"></i>미해결</span></div>
+                </div>
+              </div>
+            </div>
 
-        <div class="panel" data-panel="secret" role="tabpanel">
-          <details class="group" open>
-            <summary><span class="group__name">클라우드 액세스 키 노출</span><span class="sev sev--critical">CRITICAL</span><span>1건</span></summary>
-            <ul><li><code>src/main/resources/application-prod.yml:12</code> · 값은 가려서 표시합니다 <code>AKIA••••••••</code></li></ul>
-          </details>
-        </div>
+            <div class="card" style="margin-top:16px">
+              <h3>주의가 필요한 프로젝트</h3>
+              <p class="card__sub">대표 상태가 정상이 아닌 프로젝트</p>
+              <div class="tbl-wrap">
+                <table>
+                  <thead><tr><th>프로젝트</th><th>상태</th><th class="n">CRITICAL·HIGH</th><th class="n">미해결</th><th class="n">담당자 미지정</th><th>마지막 완료 검사</th></tr></thead>
+                  <tbody>
+                    <tr><td><a class="rowlink" href="#project">payment-api</a></td><td><span class="tag">문제 발견</span></td><td class="n">9</td><td class="n" data-counter="payment-api:total">13</td><td class="n">11</td><td>2026-10-10 09:05</td></tr>
+                    <tr><td>batch-settlement</td><td><span class="tag tag--warn">검사 오래됨</span></td><td class="n">6</td><td class="n" data-counter="batch-settlement:total">12</td><td class="n">8</td><td>2026-09-28 11:20</td></tr>
+                    <tr><td>partner-portal</td><td><span class="tag">문제 발견</span></td><td class="n">3</td><td class="n" data-counter="partner-portal:total">7</td><td class="n">7</td><td>2026-10-09 18:42</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="hint">데모에서는 <a href="#project">payment-api</a> 프로젝트를 열어 볼 수 있습니다.</p>
+            </div>
+          </div>
+        </section>
 
-        <div class="panel" data-panel="license" role="tabpanel">
-          <details class="group" open>
-            <summary><span class="group__name">강한 카피레프트 라이선스 구성요소</span><span class="group__rule">AGPL-3.0</span><span class="sev sev--high">HIGH</span><span>1건</span></summary>
-            <ul><li><code>com.itextpdf:kernel 7.2.5</code> · 서비스 제공 방식에 따라 소스 공개 의무가 생길 수 있어 법무 검토가 필요합니다.</li></ul>
-          </details>
-        </div>
-        <p class="hint">데모에서는 <a href="#finding">OrderRepository.java:48</a> 항목의 상세 화면을 볼 수 있습니다.</p>
-      </section>
+        <!-- 프로젝트 -->
+        <section class="screen" data-screen="project" aria-labelledby="t-project">
+          <div class="head">
+            <p class="crumb">프로젝트</p>
+            <h2 id="t-project">payment-api <span class="tag">문제 발견</span></h2>
+            <p class="lead">미해결 <span data-counter="payment-api:total">13</span>건 · 같은 문제는 한 번만 셉니다. 신규·재발·해결은 검사마다 이어서 추적합니다.</p>
+            <div class="tabs" role="tablist" aria-label="범주">
+              <button type="button" role="tab" data-tab="project:secret" aria-selected="false">민감정보<span class="cnt">1</span></button>
+              <button type="button" role="tab" data-tab="project:sca" aria-selected="false">라이브러리<span class="cnt">4</span></button>
+              <button type="button" role="tab" data-tab="project:sast" aria-selected="true">시큐어코드<span class="cnt" data-counter="payment-api:sast">7</span></button>
+              <button type="button" role="tab" data-tab="project:license" aria-selected="false">라이센스<span class="cnt">1</span></button>
+            </div>
+          </div>
+          <div class="body">
+            <div class="panel" data-panel="project:secret" role="tabpanel">
+              <div class="card" style="padding:0">
+                <div class="tbl-wrap"><table>
+                  <thead><tr><th>발견 항목</th><th>심각도</th><th>위치</th><th>유효성</th><th>처분</th><th>담당자</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>클라우드 액세스 키 노출</strong><span class="sub">값은 PC에서 가린 뒤 보냅니다 · <code>AKIA••••••••</code></span></td><td><span class="sev sev--critical">CRITICAL</span></td><td class="loc">src/main/resources/application-prod.yml:12</td><td><span class="tag tag--warn">유효함</span></td><td><span class="tag">미처분</span></td><td>미지정</td></tr>
+                  </tbody>
+                </table></div>
+              </div>
+              <p class="hint">고치는 방법: 먼저 키를 폐기·교체하고, 값은 환경변수나 비밀값 저장소로 옮긴 뒤 저장소 이력에서도 지웁니다.</p>
+            </div>
 
-      <!-- 항목 상세 -->
-      <section class="screen" data-screen="finding" aria-labelledby="t-finding">
-        <p class="crumb"><a href="#dashboard">대시보드</a> / <a href="#project">payment-api</a> / 항목 상세</p>
-        <h2 id="t-finding">SQL 쿼리 문자열 결합</h2>
-        <p class="lead"><code>src/main/java/com/sample/payment/order/OrderRepository.java:48</code></p>
-        <div class="detail">
-          <div>
-            <div class="card">
-              <h3>위치</h3>
+            <div class="panel" data-panel="project:sca" role="tabpanel">
+              <div class="card" style="padding:0">
+                <div class="tbl-wrap"><table>
+                  <thead><tr><th>발견 항목</th><th>심각도</th><th>패키지</th><th>고칠 버전</th><th>처분</th><th>담당자</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>log4j-core 원격 코드 실행</strong><span class="sub">CVE-2021-44228</span></td><td><span class="sev sev--critical">CRITICAL</span></td><td class="loc">org.apache.logging.log4j:log4j-core 2.14.1</td><td>2.17.1 이상</td><td><span class="tag">처리 중</span></td><td>박보안</td></tr>
+                    <tr><td><strong>spring-beans 원격 코드 실행</strong><span class="sub">CVE-2022-22965</span></td><td><span class="sev sev--critical">CRITICAL</span></td><td class="loc">org.springframework:spring-beans 5.3.17</td><td>5.3.18 이상</td><td><span class="tag">미처분</span></td><td>미지정</td></tr>
+                    <tr><td><strong>commons-text 문자열 치환 원격 코드 실행</strong><span class="sub">CVE-2022-42889</span></td><td><span class="sev sev--critical">CRITICAL</span></td><td class="loc">org.apache.commons:commons-text 1.9</td><td>1.10.0 이상</td><td><span class="tag">미처분</span></td><td>미지정</td></tr>
+                    <tr><td><strong>jackson-databind 깊은 중첩 서비스 거부</strong><span class="sub">CVE-2020-36518</span></td><td><span class="sev sev--high">HIGH</span></td><td class="loc">com.fasterxml.jackson.core:jackson-databind 2.13.1</td><td>2.13.2.1 이상</td><td><span class="tag">처리 중</span></td><td>박보안</td></tr>
+                  </tbody>
+                </table></div>
+              </div>
+            </div>
+
+            <div class="panel is-active" data-panel="project:sast" role="tabpanel">
+              <div class="card" style="padding:0" data-bulk data-sel="{n}건 선택" data-done="{n}건을 처리 중으로 바꿨습니다." data-undone="되돌렸습니다." data-undo="되돌리기" data-to="처리 중">
+                <div class="bulk" data-bulk-bar hidden>
+                  <span class="bulk__count" data-bulk-count></span>
+                  <button class="btn btn--primary" type="button" data-bulk-apply>처리 중으로</button>
+                  <button class="btn btn--text" type="button" data-bulk-clear>선택 해제</button>
+                </div>
+                <div class="tbl-wrap"><table>
+                  <thead><tr><th><input type="checkbox" data-bulk-all aria-label="모두 선택"></th><th>발견 항목</th><th>심각도</th><th>위치</th><th>AI</th><th>처분</th><th>담당자</th></tr></thead>
+                  <tbody>
+                    <tr data-row="f-sql"><td><input type="checkbox" aria-label="선택"></td><td><a class="rowlink" href="#finding">SQL 쿼리 문자열 결합</a><span class="sub">CWE-89 · <span class="tag tag--new">신규</span></span></td><td><span class="sev sev--high">HIGH</span></td><td class="loc">order/OrderRepository.java:48</td><td><span class="tag tag--ai">AI 정탐 추정</span></td><td><span class="tag" data-disp="f-sql">미처분</span></td><td>미지정</td></tr>
+                    <tr><td><input type="checkbox" aria-label="선택"></td><td><strong>SQL 쿼리 문자열 결합</strong><span class="sub">CWE-89</span></td><td><span class="sev sev--high">HIGH</span></td><td class="loc">refund/RefundRepository.java:73</td><td class="muted">—</td><td><span class="tag" data-disp>미처분</span></td><td>미지정</td></tr>
+                    <tr data-row="fp2"><td><input type="checkbox" aria-label="선택"></td><td><strong>경로 조작</strong><span class="sub">CWE-22</span></td><td><span class="sev sev--high">HIGH</span></td><td class="loc">file/FileController.java:57</td><td><span class="tag tag--ai">AI 오탐 추정</span></td><td><span class="tag" data-disp="fp2">미처분</span></td><td>미지정</td></tr>
+                    <tr><td><input type="checkbox" aria-label="선택"></td><td><strong>로그에 민감정보 출력</strong><span class="sub">CWE-532</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">PaymentService.java:112</td><td class="muted">—</td><td><span class="tag" data-disp>미처분</span></td><td>미지정</td></tr>
+                    <tr data-row="fp1"><td><input type="checkbox" aria-label="선택"></td><td><strong>로그에 민감정보 출력</strong><span class="sub">CWE-532</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">log/LogMasking.java:21</td><td><span class="tag tag--ai">AI 오탐 추정</span></td><td><span class="tag" data-disp="fp1">미처분</span></td><td>미지정</td></tr>
+                    <tr><td><input type="checkbox" aria-label="선택"></td><td><strong>로그에 민감정보 출력</strong><span class="sub">CWE-532</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">card/CardController.java:88</td><td><span class="tag tag--ai">AI 검토 필요</span></td><td><span class="tag" data-disp>미처분</span></td><td>미지정</td></tr>
+                    <tr><td><input type="checkbox" aria-label="선택"></td><td><strong>예측 가능한 난수 사용</strong><span class="sub">CWE-330</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">auth/TokenGenerator.java:19</td><td class="muted">—</td><td><span class="tag" data-disp>미처분</span></td><td>미지정</td></tr>
+                  </tbody>
+                </table></div>
+              </div>
+              <p class="hint">행을 골라 한 번에 처리하고 바로 되돌릴 수 있습니다. 첫 줄 <a href="#finding">SQL 쿼리 문자열 결합</a>을 누르면 상세 화면이 열립니다.</p>
+              <div class="toast" data-toast hidden><span data-toast-text></span><button class="btn btn--text" type="button" data-toast-undo>되돌리기</button></div>
+            </div>
+
+            <div class="panel" data-panel="project:license" role="tabpanel">
+              <div class="card" style="padding:0">
+                <div class="tbl-wrap"><table>
+                  <thead><tr><th>발견 항목</th><th>심각도</th><th>구성요소</th><th>처분</th><th>담당자</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>강한 카피레프트 라이센스</strong><span class="sub">AGPL-3.0 · 서비스 제공 방식에 따라 소스 공개 의무가 생길 수 있어 법무 검토가 필요합니다.</span></td><td><span class="sev sev--high">HIGH</span></td><td class="loc">com.itextpdf:kernel 7.2.5</td><td><span class="tag">미처분</span></td><td>미지정</td></tr>
+                  </tbody>
+                </table></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 발견 항목 상세 -->
+        <section class="screen" data-screen="finding" aria-labelledby="t-finding">
+          <div class="head">
+            <p class="crumb"><a href="#project">payment-api</a> / 발견 항목 상세</p>
+            <h2 id="t-finding">SQL 쿼리 문자열 결합</h2>
+            <div class="badges"><span class="sev sev--high">HIGH</span><span class="tag" data-disp="f-sql">미처분</span><span class="tag tag--new">신규</span><span class="tag tag--ai">AI 정탐 추정 0.95</span></div>
+          </div>
+          <div class="body">
+            <div class="grid-2">
+              <div>
+                <div class="card">
+                  <h3>발견 항목 정보</h3>
+                  <dl class="facts">
+                    <div><dt>위치</dt><dd class="loc">src/main/java/com/sample/payment/order/OrderRepository.java:48</dd></div>
+                    <div><dt>분류</dt><dd>CWE-89 SQL 삽입</dd></div>
+                    <div><dt>처음 발견</dt><dd>2026-10-10 09:05</dd></div>
+                    <div><dt>마지막 관측</dt><dd>2026-10-10 09:05</dd></div>
+                    <div><dt>발견</dt><dd>2개 검사에서 발견</dd></div>
+                    <div><dt>재발</dt><dd>없음</dd></div>
+                  </dl>
+                </div>
+                <div class="card">
+                  <h3>왜 위험한지</h3>
+                  <p style="margin:0">외부에서 받은 값을 SQL 문장에 그대로 이어 붙이면, 공격자가 값에 SQL 구문을 넣어 다른 고객의 주문을 조회하거나 데이터를 바꿀 수 있습니다.</p>
+                </div>
+                <div class="card">
+                  <h3>고치는 방법</h3>
+                  <ol class="steps">
+                    <li>값을 문자열로 이어 붙이지 말고 바인딩 변수(<code>?</code>)로 전달합니다.</li>
+                    <li>같은 방식으로 만든 다른 쿼리가 있는지 확인하고 함께 고칩니다.</li>
+                  </ol>
+                </div>
+                <div class="card">
+                  <h3>코드</h3>
 <pre class="snippet"><code><span class="ln">46</span>public List&lt;Order&gt; findByCustomer(String customerId) {
 <span class="ln">47</span>    // 고객별 주문 조회
 <span class="hl"><span class="ln">48</span>    String sql = "SELECT * FROM orders WHERE customer_id = '" + customerId + "'";</span><span class="ln">49</span>    return jdbcTemplate.query(sql, orderMapper);
 <span class="ln">50</span>}</code></pre>
-            </div>
-            <div class="card">
-              <h3>왜 위험한지</h3>
-              <p>외부에서 받은 값을 SQL 문장에 그대로 이어 붙이면, 공격자가 값에 SQL 구문을 넣어 다른 고객의 주문을 조회하거나 데이터를 바꿀 수 있습니다.</p>
-            </div>
-            <div class="card">
-              <h3>고치는 방법</h3>
-              <p>값을 문자열로 이어 붙이지 말고 바인딩 변수(<code>?</code>)로 전달하세요. 쿼리 문장과 값이 분리되어 입력값이 SQL 구문으로 해석되지 않습니다.</p>
+                </div>
+              </div>
+              <div>
+                <div class="card ai">
+                  <div class="ai__head"><strong>AI 판단</strong><span class="tag tag--ai">AI 정탐 추정</span><span class="muted">확신도 0.95</span></div>
+                  <p style="margin:0"><code>customerId</code>가 요청 값에서 검증 없이 SQL 문장으로 들어갑니다. 실제로 악용될 수 있는 위치로 판단했습니다.</p>
+                  <h3 style="margin:14px 0 8px;font-size:14px">제안 패치</h3>
+<pre class="snippet"><code><span class="del">- String sql = "SELECT * FROM orders WHERE customer_id = '" + customerId + "'";</span><span class="del">- return jdbcTemplate.query(sql, orderMapper);</span><span class="add">+ String sql = "SELECT * FROM orders WHERE customer_id = ?";</span><span class="add">+ return jdbcTemplate.query(sql, orderMapper, customerId);</span></code></pre>
+                  <p class="ai__note">AI 판단은 제안일 뿐 처분은 바꾸지 않습니다.</p>
+                </div>
+                <div class="card">
+                  <h3>처분</h3>
+                  <form data-disp-form data-target="f-sql" data-need-date="위험 수용 기한을 입력하세요." data-need-reason="사유를 입력하세요." data-saved="항목 이력에 기록했습니다." data-now="방금">
+                    <div class="choice" role="radiogroup" aria-label="처분">
+                      <label><input type="radio" name="disp" value="progress" data-label="처리 중" checked>정탐 · 처리 중</label>
+                      <label><input type="radio" name="disp" value="fp" data-label="오탐">오탐</label>
+                      <label><input type="radio" name="disp" value="accept" data-label="위험 수용">위험 수용</label>
+                    </div>
+                    <label class="field" data-accept-only hidden>수용 기한<input type="date" name="until" min="2026-10-11"></label>
+                    <label class="field">사유<textarea name="reason" placeholder="예: 다음 배포에서 바인딩 변수로 수정"></textarea></label>
+                    <p class="err" data-err role="alert" hidden></p>
+                    <div class="actions"><button class="btn btn--primary" type="submit">저장</button><span class="muted" data-saved-msg role="status"></span></div>
+                  </form>
+                </div>
+                <div class="card">
+                  <h3>이력</h3>
+                  <ul class="history" data-history>
+                    <li><time>2026-10-10 09:06</time>AI 판단 · 정탐 추정 (확신도 0.95)</li>
+                    <li><time>2026-10-10 09:05</time>검사에서 처음 발견</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-          <div>
-            <div class="card">
-              <h3>요약</h3>
-              <dl class="kv">
-                <dt>심각도</dt><dd><span class="sev sev--high">HIGH</span></dd>
-                <dt>범주</dt><dd>시큐어코딩</dd>
-                <dt>분류</dt><dd>CWE-89 SQL 삽입</dd>
-                <dt>상태</dt><dd><span class="tag tag--new">신규</span></dd>
-                <dt>처음 발견</dt><dd>2026-10-10</dd>
-              </dl>
-            </div>
-            <div class="card verdict">
-              <div class="verdict__head"><span class="tag tag--ai">AI 검토</span><span class="verdict__label">정탐</span></div>
-              <p><code>customerId</code>가 요청 값에서 검증 없이 SQL 문장으로 들어갑니다. 실제로 악용될 수 있는 위치로 판단했습니다.</p>
-              <h3 style="margin-top:14px">제안 수정</h3>
-<pre class="snippet"><code><span class="del">- String sql = "SELECT * FROM orders WHERE customer_id = '" + customerId + "'";</span>
-<span class="del">- return jdbcTemplate.query(sql, orderMapper);</span>
-<span class="add">+ String sql = "SELECT * FROM orders WHERE customer_id = ?";</span>
-<span class="add">+ return jdbcTemplate.query(sql, orderMapper, customerId);</span></code></pre>
-              <p class="sub" style="margin-top:10px">AI 판정은 제안입니다. 최종 결정은 담당자가 합니다.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- AI 검토 확인 -->
-      <section class="screen" data-screen="review" aria-labelledby="t-review">
-        <h2 id="t-review">AI 오탐 추정</h2>
-        <p class="lead">AI가 오탐으로 추정한 항목입니다. 담당자가 근거를 보고 확인하면 집계에서 빠집니다.</p>
-        <form data-review-form data-done="{n}건을 오탐으로 확인했습니다. 대시보드 숫자가 함께 줄었습니다." data-none="확인할 항목을 선택하세요.">
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>선택</th><th>프로젝트</th><th>항목</th><th>AI 판단 근거</th></tr></thead>
-              <tbody>
-                <tr data-fp="fp1" data-dec="payment-api:sast payment-api:total payment-api:ai all:ai payment-api:g-log"><td><input type="checkbox" aria-label="선택"></td><td>payment-api</td><td>로그에 민감정보 출력<br><code class="sub">LogMasking.java:21</code></td><td>출력 전에 카드번호를 앞 6자리와 뒤 4자리만 남기고 가립니다.</td></tr>
-                <tr data-fp="fp2" data-dec="payment-api:sast payment-api:total payment-api:ai all:ai payment-api:g-path"><td><input type="checkbox" aria-label="선택"></td><td>payment-api</td><td>경로 조작<br><code class="sub">FileController.java:57</code></td><td>파일 이름을 허용 목록과 대조한 뒤에만 경로에 씁니다.</td></tr>
-                <tr data-fp="fp3" data-dec="partner-portal:sast partner-portal:total partner-portal:ai all:ai"><td><input type="checkbox" aria-label="선택"></td><td>partner-portal</td><td>검증 없는 HTML 삽입<br><code class="sub">NoticeView.tsx:34</code></td><td>삽입하기 전에 허용된 태그만 남기도록 정제합니다.</td></tr>
-                <tr data-empty hidden><td colspan="4">확인할 항목이 없습니다.</td></tr>
-              </tbody>
-            </table>
+        <!-- 검토함 -->
+        <section class="screen" data-screen="inbox" aria-labelledby="t-inbox">
+          <div class="head">
+            <h2 id="t-inbox">검토함</h2>
+            <p class="lead">사람이 결정해야 할 항목만 모았습니다. 결정은 항목 이력에 남고 되돌릴 수 있습니다.</p>
+            <div class="tabs" role="tablist" aria-label="검토 구분">
+              <button type="button" role="tab" data-tab="inbox:ai" aria-selected="true">AI 오탐 제안<span class="cnt" data-counter="inbox:ai">3</span></button>
+              <button type="button" role="tab" data-tab="inbox:recheck" aria-selected="false">코드 변경 재검토<span class="cnt" data-counter="inbox:recheck">1</span></button>
+              <button type="button" role="tab" data-tab="inbox:expire" aria-selected="false">위험 수용 만료<span class="cnt" data-counter="inbox:expire">1</span></button>
+            </div>
           </div>
-          <div class="actions">
-            <button class="btn btn--primary" type="submit">선택 확인</button>
-            <button class="btn" type="submit" name="all">모두 확인</button>
-            <span class="status" data-status role="status"></span>
+          <div class="body">
+            <div class="grid-2">
+              <div>
+                <div class="panel is-active" data-panel="inbox:ai" role="tabpanel" data-review-list data-tpl="{total}건 중 {done}건 결정">
+                  <p class="hint" style="margin:0 0 12px">AI가 오탐으로 추정한 항목입니다. 사람이 결정하기 전에는 개수에 그대로 남습니다.</p>
+                  <div class="progress"><span data-progress-text>3건 중 0건 결정</span><span class="bar"><span data-progress-bar style="width:0"></span></span></div>
+                  <div class="card review" data-card>
+                    <div class="review__head"><strong data-title>로그에 민감정보 출력</strong><span class="sev sev--medium">MEDIUM</span><span class="tag tag--ai">AI 오탐 추정 0.97</span></div>
+                    <p class="review__where" data-where>payment-api · log/LogMasking.java:21</p>
+                    <div class="reason"><b>AI 판단 근거</b>출력 전에 카드번호를 앞 6자리와 뒤 4자리만 남기고 가립니다. 원문 카드번호는 로그에 남지 않습니다.</div>
+<pre class="snippet"><code><span class="ln">20</span>String masked = CardMask.keepEnds(cardNo, 6, 4);
+<span class="hl"><span class="ln">21</span>log.info("결제 요청 card={}", masked);</span></code></pre>
+                    <div class="actions">
+                      <button class="btn btn--primary" type="button" data-decide data-label="오탐" data-keys="inbox inbox:ai cat:sast all:total payment-api:sast payment-api:total" data-hide-row="fp1">오탐으로 처분</button>
+                      <button class="btn" type="button" data-decide data-label="처리 중" data-keys="inbox inbox:ai" data-set-disp="fp1">정탐 · 처리 중</button>
+                      <button class="btn btn--text" type="button" data-skip>건너뛰기</button>
+                    </div>
+                  </div>
+                  <div class="card review" data-card>
+                    <div class="review__head"><strong data-title>경로 조작</strong><span class="sev sev--high">HIGH</span><span class="tag tag--ai">AI 오탐 추정 0.91</span></div>
+                    <p class="review__where" data-where>payment-api · file/FileController.java:57</p>
+                    <div class="reason"><b>AI 판단 근거</b>파일 이름을 허용 목록과 대조한 뒤에만 경로에 씁니다. 목록에 없는 이름은 앞 단계에서 거절됩니다.</div>
+<pre class="snippet"><code><span class="ln">55</span>if (!ALLOWED.contains(name)) throw new BadRequest();
+<span class="ln">56</span>Path base = Paths.get(EXPORT_DIR);
+<span class="hl"><span class="ln">57</span>return Files.readAllBytes(base.resolve(name));</span></code></pre>
+                    <div class="actions">
+                      <button class="btn btn--primary" type="button" data-decide data-label="오탐" data-keys="inbox inbox:ai cat:sast all:total payment-api:sast payment-api:total" data-hide-row="fp2">오탐으로 처분</button>
+                      <button class="btn" type="button" data-decide data-label="처리 중" data-keys="inbox inbox:ai" data-set-disp="fp2">정탐 · 처리 중</button>
+                      <button class="btn btn--text" type="button" data-skip>건너뛰기</button>
+                    </div>
+                  </div>
+                  <div class="card review" data-card>
+                    <div class="review__head"><strong data-title>검증 없는 HTML 삽입</strong><span class="sev sev--medium">MEDIUM</span><span class="tag tag--ai">AI 오탐 추정 0.88</span></div>
+                    <p class="review__where" data-where>partner-portal · notice/NoticeView.tsx:34</p>
+                    <div class="reason"><b>AI 판단 근거</b>삽입하기 전에 허용된 태그만 남기도록 정제합니다. 정제 함수는 같은 파일 위쪽에서 모든 공지 본문에 적용됩니다.</div>
+                    <div class="actions">
+                      <button class="btn btn--primary" type="button" data-decide data-label="오탐" data-keys="inbox inbox:ai cat:sast all:total partner-portal:total">오탐으로 처분</button>
+                      <button class="btn" type="button" data-decide data-label="처리 중" data-keys="inbox inbox:ai">정탐 · 처리 중</button>
+                      <button class="btn btn--text" type="button" data-skip>건너뛰기</button>
+                    </div>
+                  </div>
+                  <p class="empty" data-empty hidden>검토할 항목이 없습니다.</p>
+                </div>
+
+                <div class="panel" data-panel="inbox:recheck" role="tabpanel" data-review-list data-tpl="{total}건 중 {done}건 결정">
+                  <p class="hint" style="margin:0 0 12px">처분한 뒤 코드 조각이 바뀌어 미처분으로 돌아온 항목입니다. 이전 사유와 바뀐 코드를 함께 봅니다.</p>
+                  <div class="progress"><span data-progress-text>1건 중 0건 결정</span><span class="bar"><span data-progress-bar style="width:0"></span></span></div>
+                  <div class="card review" data-card>
+                    <div class="review__head"><strong data-title>로그에 민감정보 출력</strong><span class="sev sev--medium">MEDIUM</span><span class="tag">이전 처분 · 오탐</span></div>
+                    <p class="review__where" data-where>batch-settlement · job/SettlementJob.java:142</p>
+                    <div class="reason"><b>이전 사유</b>계좌번호는 마스킹 함수를 거친 값만 출력함 (2026-09-02 박보안)</div>
+<pre class="snippet"><code><span class="del">- log.info("정산 대상 account={}", Mask.account(acct));</span><span class="add">+ log.info("정산 대상 account={} raw={}", Mask.account(acct), acct);</span></code></pre>
+                    <div class="actions">
+                      <button class="btn btn--primary" type="button" data-decide data-label="처리 중" data-keys="inbox inbox:recheck">정탐 · 처리 중</button>
+                      <button class="btn" type="button" data-decide data-label="오탐" data-keys="inbox inbox:recheck cat:sast all:total batch-settlement:total">다시 오탐으로</button>
+                    </div>
+                  </div>
+                  <p class="empty" data-empty hidden>검토할 항목이 없습니다.</p>
+                </div>
+
+                <div class="panel" data-panel="inbox:expire" role="tabpanel" data-review-list data-tpl="{total}건 중 {done}건 결정">
+                  <p class="hint" style="margin:0 0 12px">위험 수용 기한이 지나 미처분으로 돌아온 항목입니다. 다시 수용하려면 새 기한과 사유가 필요합니다.</p>
+                  <div class="progress"><span data-progress-text>1건 중 0건 결정</span><span class="bar"><span data-progress-bar style="width:0"></span></span></div>
+                  <div class="card review" data-card>
+                    <div class="review__head"><strong data-title>약한 해시 알고리즘 사용</strong><span class="sev sev--medium">MEDIUM</span><span class="tag tag--warn">수용 기한 2026-10-01 지남</span></div>
+                    <p class="review__where" data-where>batch-settlement · util/HashUtil.java:31</p>
+                    <div class="reason"><b>이전 사유</b>외부 연계 규격이 MD5를 요구함. 연계사 규격 변경 전까지 수용 (2026-07-01 박보안)</div>
+                    <div class="actions">
+                      <button class="btn btn--primary" type="button" data-decide data-label="처리 중" data-keys="inbox inbox:expire">처리 중으로</button>
+                      <button class="btn" type="button" data-decide data-label="위험 수용 · 기한 2027-01-31" data-keys="inbox inbox:expire cat:sast all:total batch-settlement:total">기한 연장 (2027-01-31)</button>
+                    </div>
+                  </div>
+                  <p class="empty" data-empty hidden>검토할 항목이 없습니다.</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3>최근 결정</h3>
+                <ul class="recent" data-recent data-now="방금" data-undo="되돌리기">
+                  <li><b>위험 수용</b> · 테스트용 더미 키<span class="sub">batch-settlement · 박보안 · 2026-10-09 17:12</span></li>
+                  <li><b>오탐</b> · 운영체제 명령 삽입<span class="sub">partner-portal · 박보안 · 2026-10-09 16:40</span></li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </form>
-      </section>
+        </section>
+
+        <!-- 에이전트 -->
+        <section class="screen" data-screen="agents" aria-labelledby="t-agents">
+          <div class="head">
+            <p class="crumb">검사 운영</p>
+            <h2 id="t-agents">에이전트</h2>
+            <p class="lead">개발자 PC에 설치할 명령을 만들고, 연결된 PC를 관리합니다.</p>
+          </div>
+          <div class="body">
+            <div class="card">
+              <h3>설치 명령 만들기</h3>
+              <p class="card__sub">PC 한 대에 명령 하나를 만듭니다. 명령을 실행하면 검사 준비와 자동 시작까지 끝납니다.</p>
+              <form class="form-line" data-install-form data-server="https://jikimi.sample.example" data-need-label="PC 이름을 입력하세요." data-copy="복사" data-copied="복사했습니다" data-pending="설치 대기" data-now="방금">
+                <label class="field">PC 이름<input name="label" maxlength="60" placeholder="예: 결제팀 김개발 MacBook"></label>
+                <button class="btn btn--primary" type="submit" style="height:36px">설치 명령 만들기</button>
+              </form>
+              <p class="err" data-err role="alert" hidden style="margin-top:8px"></p>
+              <div data-cmd-box hidden>
+                <div class="cmd"><code data-cmd></code><button class="btn" type="button" data-copy-btn>복사</button></div>
+                <ul class="notes">
+                  <li>명령은 지금만 보입니다. 잃어버리면 새로 만드세요.</li>
+                  <li>설치한 뒤에는 프로젝트 폴더에서 <code>jikimi scan .</code>을 실행합니다. 결과는 이 화면의 담당자에게 나타납니다.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card" style="padding:0">
+              <div style="padding:20px 22px 8px"><h3 style="margin:0">사용 중인 PC</h3></div>
+              <div class="tbl-wrap"><table>
+                <thead><tr><th>PC 이름</th><th>OS</th><th>에이전트 버전</th><th>마지막 연결</th><th>상태</th><th>작업</th></tr></thead>
+                <tbody data-pc-list data-cut="연결 끊김" data-cut-btn="연결 끊기">
+                  <tr><td>결제팀 이개발 MacBook Pro</td><td>macOS · Apple 실리콘</td><td>0.1.0</td><td>2026-10-10 09:05</td><td><span class="dot"></span>연결됨</td><td><button class="btn btn--danger" type="button" data-cut-row>연결 끊기</button></td></tr>
+                  <tr><td>파트너팀 최개발 MacBook Air</td><td>macOS · Apple 실리콘</td><td>0.1.0</td><td>2026-10-09 18:42</td><td><span class="dot"></span>연결됨</td><td><button class="btn btn--danger" type="button" data-cut-row>연결 끊기</button></td></tr>
+                  <tr><td>정산팀 공용 iMac</td><td>macOS · Intel</td><td>0.1.0</td><td>2026-09-28 11:20</td><td><span class="dot dot--off"></span>오프라인</td><td><button class="btn btn--danger" type="button" data-cut-row>연결 끊기</button></td></tr>
+                </tbody>
+              </table></div>
+            </div>
+            <p class="hint">에이전트는 새 버전을 스스로 확인해 갱신합니다. 연결을 끊은 PC는 더 이상 결과를 보내지 못하고, 다른 PC는 그대로 검사합니다.</p>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </main>

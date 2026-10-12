@@ -4,14 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Jikimi Demo | Hanvietech</title>
-<meta name="description" content="A demo of the result screens of Jikimi, an AI code security agent Hanvietech is preparing to launch, built with sample data.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<meta name="description" content="A demo of Jikimi, an AI code security agent Hanvietech is preparing to launch, built with sample data.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="icon" href="../brand/jikimi-app-icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../demo.css">
 <script src="../demo.js" defer></script>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H9l2 2h8.5A1.5 1.5 0 0 1 21 8.5v10a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3M15 8l2 2"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5 5h14l2 8v6H3v-6z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 18 4-6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 19 6v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></symbol>
+</svg>
+
 <header class="intro">
   <div class="wrap">
     <div class="intro__bar">
@@ -23,13 +37,14 @@
       </nav>
     </div>
     <h1><img src="../brand/jikimi-symbol-on-dark.svg" width="40" height="40" alt="">Jikimi Demo</h1>
-    <p>An AI code security agent that connects the whole process in one workflow: finding security issues in code, reviewing them with AI and people together, deciding according to your organization's policy, and verifying again after the fix.</p>
-    <p class="intro__note"><span class="badge-soon">Coming soon</span> Result screens built with sample data. No real customer data is shown, and the released product may look different.</p>
+    <p>A security agent that uses AI services to find security issues in code and help you decide. An agent on the developer's PC scans the code, AI suggests whether each finding is a false positive and how to fix it, and your reviewer decides.</p>
+    <p class="intro__note"><span class="badge-soon">Coming soon</span> Screens built with sample data. No real customer data is shown, and the released product may look different. Decisions you make here only change this page.</p>
     <ol class="tour">
-      <li><a href="#dashboard" data-go="dashboard">Dashboard</a></li>
-      <li><a href="#project" data-go="project">Project results</a></li>
+      <li><a href="#home" data-go="home">Home</a></li>
+      <li><a href="#project" data-go="project">Project</a></li>
       <li><a href="#finding" data-go="finding">Finding detail</a></li>
-      <li><a href="#review" data-go="review">AI review</a></li>
+      <li><a href="#inbox" data-go="inbox">Review inbox</a></li>
+      <li><a href="#agents" data-go="agents">Agent setup</a></li>
     </ol>
   </div>
 </header>
@@ -37,176 +52,404 @@
 <main class="stage" id="stage">
   <div class="wrap">
     <div class="app">
-      <div class="app__chrome" aria-hidden="true"><span></span><span></span><span></span><em class="app__title">Jikimi · Sample Inc.</em></div>
-      <nav class="app__nav" aria-label="Demo menu">
-        <strong>Sample Inc.</strong>
-        <a href="#dashboard" data-go="dashboard">Dashboard</a>
-        <a href="#review" data-go="review">AI false positives<span class="count" data-counter="all:ai">3</span></a>
+      <nav class="side" aria-label="Demo menu">
+        <div class="side__logo"><img src="../brand/jikimi-symbol-on-dark.svg" width="28" height="28" alt="">Jikimi</div>
+        <a href="#home" data-go="home"><svg class="icon"><use href="#i-home"/></svg>Home</a>
+        <a href="#project" data-go="project"><svg class="icon"><use href="#i-folder"/></svg>Projects</a>
+        <div class="side__group">Findings</div>
+        <span class="static"><svg class="icon"><use href="#i-key"/></svg>Secrets<span class="num" data-counter="cat:secret">3</span></span>
+        <span class="static"><svg class="icon"><use href="#i-box"/></svg>Libraries<span class="num" data-counter="cat:sca">12</span></span>
+        <span class="static"><svg class="icon"><use href="#i-code"/></svg>Secure code<span class="num" data-counter="cat:sast">15</span></span>
+        <span class="static"><svg class="icon"><use href="#i-file"/></svg>Licenses<span class="num" data-counter="cat:license">2</span></span>
+        <div class="side__rule"></div>
+        <a href="#inbox" data-go="inbox"><svg class="icon"><use href="#i-inbox"/></svg>Review inbox<span class="badge" data-counter="inbox">5</span></a>
+        <div class="side__group">Scan operations</div>
+        <a href="#agents" data-go="agents"><svg class="icon"><use href="#i-gauge"/></svg>Agents</a>
       </nav>
 
-      <!-- Dashboard -->
-      <section class="screen" data-screen="dashboard" aria-labelledby="t-dashboard">
-        <h2 id="t-dashboard">Security findings by project</h2>
-        <p class="lead">Based on the last completed scan. The same issue is counted once.</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Project</th><th class="num">Secrets</th><th class="num">Secure coding</th><th class="num">Open source vulns</th><th class="num">Licenses</th><th class="num">Total</th><th>Last scan</th><th>AI false positives</th></tr></thead>
-            <tbody>
-              <tr><td><a href="#project">payment-api</a></td><td class="num">1</td><td class="num" data-counter="payment-api:sast">7</td><td class="num">4</td><td class="num">1</td><td class="num"><strong data-counter="payment-api:total">13</strong></td><td>2026-10-10 09:05</td><td><a href="#review"><span data-counter="payment-api:ai">2</span></a></td></tr>
-              <tr><td>partner-portal</td><td class="num">0</td><td class="num" data-counter="partner-portal:sast">5</td><td class="num">2</td><td class="num">0</td><td class="num"><strong data-counter="partner-portal:total">7</strong></td><td>2026-10-09 18:42</td><td><a href="#review"><span data-counter="partner-portal:ai">1</span></a></td></tr>
-              <tr><td>batch-settlement</td><td class="num">2</td><td class="num">3</td><td class="num">6</td><td class="num">1</td><td class="num"><strong>12</strong></td><td>2026-10-08 11:20</td><td>0</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="hint">In this demo, you can open the results of the <a href="#project">payment-api</a> project.</p>
-      </section>
-
-      <!-- Project results -->
-      <section class="screen" data-screen="project" aria-labelledby="t-project">
-        <p class="crumb"><a href="#dashboard">Dashboard</a> / payment-api</p>
-        <h2 id="t-project">payment-api</h2>
-        <p class="lead"><strong data-counter="payment-api:total">13</strong> open findings · Findings from the same rule are grouped together.</p>
-        <div class="tabs" role="tablist" aria-label="Category">
-          <button type="button" role="tab" data-tab="sast" aria-selected="true">Secure coding (<span data-counter="payment-api:sast">7</span>)</button>
-          <button type="button" role="tab" data-tab="oss" aria-selected="false">Open source vulns (4)</button>
-          <button type="button" role="tab" data-tab="secret" aria-selected="false">Secrets (1)</button>
-          <button type="button" role="tab" data-tab="license" aria-selected="false">Licenses (1)</button>
+      <div class="main">
+        <div class="topbar">
+          <span class="topbar__tenant">Sample Inc.</span>
+          <span class="topbar__search">Search projects · packages · CVEs</span>
+          <span class="topbar__user">security@sample.example</span>
         </div>
 
-        <div class="panel is-active" data-panel="sast" role="tabpanel">
-          <details class="group" open>
-            <summary><span class="group__name">SQL query built by string concatenation</span><span class="group__rule">CWE-89</span><span class="sev sev--high">HIGH</span><span>2</span></summary>
-            <ul>
-              <li><a href="#finding"><code>src/main/java/com/sample/payment/order/OrderRepository.java:48</code></a> <span class="tag tag--new">New</span></li>
-              <li><code>src/main/java/com/sample/payment/refund/RefundRepository.java:73</code></li>
-            </ul>
-          </details>
-          <details class="group">
-            <summary><span class="group__name">Sensitive data written to logs</span><span class="group__rule">CWE-532</span><span class="sev sev--medium">MEDIUM</span><span data-counter="payment-api:g-log">3</span></summary>
-            <ul>
-              <li><code>src/main/java/com/sample/payment/PaymentService.java:112</code></li>
-              <li data-fp-item="fp1"><code>src/main/java/com/sample/payment/log/LogMasking.java:21</code> <span class="tag tag--ai">AI: likely false positive</span></li>
-              <li><code>src/main/java/com/sample/payment/card/CardController.java:88</code></li>
-            </ul>
-          </details>
-          <details class="group">
-            <summary><span class="group__name">Path traversal</span><span class="group__rule">CWE-22</span><span class="sev sev--high">HIGH</span><span data-counter="payment-api:g-path">1</span></summary>
-            <ul>
-              <li data-fp-item="fp2"><code>src/main/java/com/sample/payment/file/FileController.java:57</code> <span class="tag tag--ai">AI: likely false positive</span></li>
-            </ul>
-          </details>
-          <details class="group">
-            <summary><span class="group__name">Predictable random values</span><span class="group__rule">CWE-330</span><span class="sev sev--medium">MEDIUM</span><span>1</span></summary>
-            <ul><li><code>src/main/java/com/sample/payment/auth/TokenGenerator.java:19</code></li></ul>
-          </details>
-        </div>
+        <!-- Home -->
+        <section class="screen" data-screen="home" aria-labelledby="t-home">
+          <div class="head">
+            <h2 id="t-home">Today</h2>
+            <p class="lead">Last completed scan 2026-10-10 09:05 · 3 projects · <span data-counter="all:total">32</span> open</p>
+          </div>
+          <div class="body">
+            <div class="kpis">
+              <div class="card kpi">
+                <span class="kpi__label"><svg class="icon"><use href="#i-check"/></svg>Awaiting review</span>
+                <span class="kpi__value"><span data-counter="inbox">5</span></span>
+                <p>AI false-positive proposals <span data-counter="inbox:ai">3</span> · Code changed <span data-counter="inbox:recheck">1</span> · Acceptance expired <span data-counter="inbox:expire">1</span></p>
+                <a class="link" href="#inbox">Open review inbox →</a>
+              </div>
+              <div class="card kpi">
+                <span class="kpi__label"><svg class="icon"><use href="#i-shield"/></svg>Live secrets</span>
+                <span class="kpi__value">1</span>
+                <p>A key that actually works. Revoke and replace it first.</p>
+                <a class="link" href="#project" data-open-tab="project:secret">View secrets →</a>
+              </div>
+              <div class="card kpi">
+                <span class="kpi__label"><svg class="icon"><use href="#i-up"/></svg>Fixed by upgrading</span>
+                <span class="kpi__value">9</span>
+                <p>Open library vulnerabilities that have a fixed version.</p>
+                <a class="link" href="#project" data-open-tab="project:sca">View libraries →</a>
+              </div>
+              <div class="card kpi">
+                <span class="kpi__label"><svg class="icon"><use href="#i-alert"/></svg>Projects with scan issues</span>
+                <span class="kpi__value">1</span>
+                <p>Check failed, needed, or stale scans.</p>
+                <a class="link" href="#agents">View scan operations →</a>
+              </div>
+            </div>
 
-        <div class="panel" data-panel="oss" role="tabpanel">
-          <details class="group" open>
-            <summary><span class="group__name">log4j-core remote code execution</span><span class="group__rule">CVE-2021-44228</span><span class="sev sev--critical">CRITICAL</span><span>1</span></summary>
-            <ul><li><code>org.apache.logging.log4j:log4j-core 2.14.1</code> · Upgrade to 2.17.1 or later</li></ul>
-          </details>
-          <details class="group">
-            <summary><span class="group__name">spring-beans remote code execution</span><span class="group__rule">CVE-2022-22965</span><span class="sev sev--critical">CRITICAL</span><span>1</span></summary>
-            <ul><li><code>org.springframework:spring-beans 5.3.17</code> · Upgrade to 5.3.18 or later</li></ul>
-          </details>
-          <details class="group">
-            <summary><span class="group__name">commons-text string interpolation remote code execution</span><span class="group__rule">CVE-2022-42889</span><span class="sev sev--critical">CRITICAL</span><span>1</span></summary>
-            <ul><li><code>org.apache.commons:commons-text 1.9</code> · Upgrade to 1.10.0 or later</li></ul>
-          </details>
-          <details class="group">
-            <summary><span class="group__name">jackson-databind denial of service via deep nesting</span><span class="group__rule">CVE-2020-36518</span><span class="sev sev--high">HIGH</span><span>1</span></summary>
-            <ul><li><code>com.fasterxml.jackson.core:jackson-databind 2.13.1</code> · Upgrade to 2.13.2.1 or later</li></ul>
-          </details>
-        </div>
+            <div class="home-row">
+              <div class="card">
+                <h3>Handle now</h3>
+                <p class="card__sub">By priority</p>
+                <ul class="todo">
+                  <li><span class="sev sev--critical">CRITICAL</span><span class="todo__main"><strong>Exposed cloud access key</strong><span class="sub">payment-api · application-prod.yml:12</span></span><span class="todo__why">Live key</span><a class="link" href="#project" data-open-tab="project:secret">Open</a></li>
+                  <li><span class="sev sev--critical">CRITICAL</span><span class="todo__main"><strong>log4j-core remote code execution</strong><span class="sub">payment-api · log4j-core 2.14.1</span></span><span class="todo__why">Fixed by upgrading</span><a class="link" href="#project" data-open-tab="project:sca">Open</a></li>
+                  <li><span class="sev sev--high">HIGH</span><span class="todo__main"><strong>SQL query built by string concatenation</strong><span class="sub">payment-api · OrderRepository.java:48</span></span><span class="todo__why">New</span><a class="link" href="#finding">Open</a></li>
+                  <li><span class="sev sev--medium">MEDIUM</span><span class="todo__main"><strong>Weak hash algorithm</strong><span class="sub">batch-settlement · HashUtil.java:31</span></span><span class="todo__why">Acceptance expired</span><a class="link" href="#inbox" data-open-tab="inbox:expire">Open</a></li>
+                </ul>
+              </div>
+              <div>
+                <div class="card">
+                  <h3>Open by category</h3>
+                  <div class="bars">
+                    <span>Secrets</span><span class="bar"><span style="width:20%"></span></span><span class="n" data-counter="cat:secret">3</span>
+                    <span>Libraries</span><span class="bar"><span style="width:80%"></span></span><span class="n" data-counter="cat:sca">12</span>
+                    <span>Secure code</span><span class="bar"><span style="width:100%"></span></span><span class="n" data-counter="cat:sast">15</span>
+                    <span>Licenses</span><span class="bar"><span style="width:13%"></span></span><span class="n" data-counter="cat:license">2</span>
+                  </div>
+                </div>
+                <div class="card">
+                  <h3>Open trend · 30 days</h3>
+                  <svg class="trend" viewBox="0 0 300 112" role="img" aria-label="Over 30 days, open findings rose to 48 and then fell to 32.">
+                    <line x1="12" y1="100" x2="292" y2="100" stroke="#E5E5E5"/>
+                    <line x1="12" y1="30" x2="292" y2="30" stroke="#F0F0F0" stroke-dasharray="3 3"/>
+                    <polyline fill="none" stroke="#4338CA" stroke-width="2" stroke-linejoin="round" points="12.0,54.5 21.6,54.5 31.2,51.0 40.8,44.0 50.4,44.0 60.0,47.5 69.6,47.5 79.2,37.0 88.8,37.0 98.4,40.5 108.0,40.5 117.6,44.0 127.2,30.0 136.8,30.0 146.4,33.5 156.0,33.5 165.6,37.0 175.2,40.5 184.8,40.5 194.4,44.0 204.0,58.0 213.6,58.0 223.2,61.5 232.8,65.0 242.4,65.0 252.0,72.0 261.6,75.5 271.2,75.5 280.8,82.5 290.4,86.0"/>
+                    <text x="12" y="111" font-size="9" fill="#8C8C8C">09-11</text>
+                    <text x="292" y="111" font-size="9" fill="#8C8C8C" text-anchor="end">10-10</text>
+                    <text x="14" y="26" font-size="9" fill="#8C8C8C">48</text>
+                  </svg>
+                  <div class="legend"><span><i style="background:#4338CA"></i>Open</span></div>
+                </div>
+              </div>
+            </div>
 
-        <div class="panel" data-panel="secret" role="tabpanel">
-          <details class="group" open>
-            <summary><span class="group__name">Exposed cloud access key</span><span class="sev sev--critical">CRITICAL</span><span>1</span></summary>
-            <ul><li><code>src/main/resources/application-prod.yml:12</code> · Shown masked <code>AKIA••••••••</code></li></ul>
-          </details>
-        </div>
+            <div class="card" style="margin-top:16px">
+              <h3>Projects needing attention</h3>
+              <p class="card__sub">Projects whose overall status is not healthy</p>
+              <div class="tbl-wrap">
+                <table>
+                  <thead><tr><th>Project</th><th>Status</th><th class="n">CRITICAL·HIGH</th><th class="n">Open</th><th class="n">Unassigned</th><th>Last completed scan</th></tr></thead>
+                  <tbody>
+                    <tr><td><a class="rowlink" href="#project">payment-api</a></td><td><span class="tag">Issues found</span></td><td class="n">9</td><td class="n" data-counter="payment-api:total">13</td><td class="n">11</td><td>2026-10-10 09:05</td></tr>
+                    <tr><td>batch-settlement</td><td><span class="tag tag--warn">Scan stale</span></td><td class="n">6</td><td class="n" data-counter="batch-settlement:total">12</td><td class="n">8</td><td>2026-09-28 11:20</td></tr>
+                    <tr><td>partner-portal</td><td><span class="tag">Issues found</span></td><td class="n">3</td><td class="n" data-counter="partner-portal:total">7</td><td class="n">7</td><td>2026-10-09 18:42</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="hint">In this demo you can open the <a href="#project">payment-api</a> project.</p>
+            </div>
+          </div>
+        </section>
 
-        <div class="panel" data-panel="license" role="tabpanel">
-          <details class="group" open>
-            <summary><span class="group__name">Strong copyleft component</span><span class="group__rule">AGPL-3.0</span><span class="sev sev--high">HIGH</span><span>1</span></summary>
-            <ul><li><code>com.itextpdf:kernel 7.2.5</code> · Depending on how the service is offered, source disclosure may be required. Legal review is recommended.</li></ul>
-          </details>
-        </div>
-        <p class="hint">In this demo, you can open the detail of <a href="#finding">OrderRepository.java:48</a>.</p>
-      </section>
+        <!-- Project -->
+        <section class="screen" data-screen="project" aria-labelledby="t-project">
+          <div class="head">
+            <p class="crumb">Projects</p>
+            <h2 id="t-project">payment-api <span class="tag">Issues found</span></h2>
+            <p class="lead"><span data-counter="payment-api:total">13</span> open · The same issue is counted once. New, recurring, and resolved findings are tracked across scans.</p>
+            <div class="tabs" role="tablist" aria-label="Category">
+              <button type="button" role="tab" data-tab="project:secret" aria-selected="false">Secrets<span class="cnt">1</span></button>
+              <button type="button" role="tab" data-tab="project:sca" aria-selected="false">Libraries<span class="cnt">4</span></button>
+              <button type="button" role="tab" data-tab="project:sast" aria-selected="true">Secure code<span class="cnt" data-counter="payment-api:sast">7</span></button>
+              <button type="button" role="tab" data-tab="project:license" aria-selected="false">Licenses<span class="cnt">1</span></button>
+            </div>
+          </div>
+          <div class="body">
+            <div class="panel" data-panel="project:secret" role="tabpanel">
+              <div class="card" style="padding:0">
+                <div class="tbl-wrap"><table>
+                  <thead><tr><th>Finding</th><th>Severity</th><th>Location</th><th>Validity</th><th>Disposition</th><th>Assignee</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Exposed cloud access key</strong><span class="sub">The value is masked on the PC before it is sent · <code>AKIA••••••••</code></span></td><td><span class="sev sev--critical">CRITICAL</span></td><td class="loc">src/main/resources/application-prod.yml:12</td><td><span class="tag tag--warn">Live</span></td><td><span class="tag">Open</span></td><td>Unassigned</td></tr>
+                  </tbody>
+                </table></div>
+              </div>
+              <p class="hint">How to fix: revoke and replace the key first, move the value to an environment variable or secret store, then remove it from the repository history.</p>
+            </div>
 
-      <!-- Finding detail -->
-      <section class="screen" data-screen="finding" aria-labelledby="t-finding">
-        <p class="crumb"><a href="#dashboard">Dashboard</a> / <a href="#project">payment-api</a> / Finding</p>
-        <h2 id="t-finding">SQL query built by string concatenation</h2>
-        <p class="lead"><code>src/main/java/com/sample/payment/order/OrderRepository.java:48</code></p>
-        <div class="detail">
-          <div>
-            <div class="card">
-              <h3>Location</h3>
+            <div class="panel" data-panel="project:sca" role="tabpanel">
+              <div class="card" style="padding:0">
+                <div class="tbl-wrap"><table>
+                  <thead><tr><th>Finding</th><th>Severity</th><th>Package</th><th>Fixed in</th><th>Disposition</th><th>Assignee</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>log4j-core remote code execution</strong><span class="sub">CVE-2021-44228</span></td><td><span class="sev sev--critical">CRITICAL</span></td><td class="loc">org.apache.logging.log4j:log4j-core 2.14.1</td><td>2.17.1 or later</td><td><span class="tag">In progress</span></td><td>B. Park</td></tr>
+                    <tr><td><strong>spring-beans remote code execution</strong><span class="sub">CVE-2022-22965</span></td><td><span class="sev sev--critical">CRITICAL</span></td><td class="loc">org.springframework:spring-beans 5.3.17</td><td>5.3.18 or later</td><td><span class="tag">Open</span></td><td>Unassigned</td></tr>
+                    <tr><td><strong>commons-text string interpolation remote code execution</strong><span class="sub">CVE-2022-42889</span></td><td><span class="sev sev--critical">CRITICAL</span></td><td class="loc">org.apache.commons:commons-text 1.9</td><td>1.10.0 or later</td><td><span class="tag">Open</span></td><td>Unassigned</td></tr>
+                    <tr><td><strong>jackson-databind deep nesting denial of service</strong><span class="sub">CVE-2020-36518</span></td><td><span class="sev sev--high">HIGH</span></td><td class="loc">com.fasterxml.jackson.core:jackson-databind 2.13.1</td><td>2.13.2.1 or later</td><td><span class="tag">In progress</span></td><td>B. Park</td></tr>
+                  </tbody>
+                </table></div>
+              </div>
+            </div>
+
+            <div class="panel is-active" data-panel="project:sast" role="tabpanel">
+              <div class="card" style="padding:0" data-bulk data-sel="{n} selected" data-done="Set {n} to In progress." data-undone="Undone." data-undo="Undo" data-to="In progress">
+                <div class="bulk" data-bulk-bar hidden>
+                  <span class="bulk__count" data-bulk-count></span>
+                  <button class="btn btn--primary" type="button" data-bulk-apply>Set to In progress</button>
+                  <button class="btn btn--text" type="button" data-bulk-clear>Clear selection</button>
+                </div>
+                <div class="tbl-wrap"><table>
+                  <thead><tr><th><input type="checkbox" data-bulk-all aria-label="Select all"></th><th>Finding</th><th>Severity</th><th>Location</th><th>AI</th><th>Disposition</th><th>Assignee</th></tr></thead>
+                  <tbody>
+                    <tr data-row="f-sql"><td><input type="checkbox" aria-label="Select"></td><td><a class="rowlink" href="#finding">SQL query built by string concatenation</a><span class="sub">CWE-89 · <span class="tag tag--new">New</span></span></td><td><span class="sev sev--high">HIGH</span></td><td class="loc">order/OrderRepository.java:48</td><td><span class="tag tag--ai">AI: likely true positive</span></td><td><span class="tag" data-disp="f-sql">Open</span></td><td>Unassigned</td></tr>
+                    <tr><td><input type="checkbox" aria-label="Select"></td><td><strong>SQL query built by string concatenation</strong><span class="sub">CWE-89</span></td><td><span class="sev sev--high">HIGH</span></td><td class="loc">refund/RefundRepository.java:73</td><td class="muted">—</td><td><span class="tag" data-disp>Open</span></td><td>Unassigned</td></tr>
+                    <tr data-row="fp2"><td><input type="checkbox" aria-label="Select"></td><td><strong>Path traversal</strong><span class="sub">CWE-22</span></td><td><span class="sev sev--high">HIGH</span></td><td class="loc">file/FileController.java:57</td><td><span class="tag tag--ai">AI: likely false positive</span></td><td><span class="tag" data-disp="fp2">Open</span></td><td>Unassigned</td></tr>
+                    <tr><td><input type="checkbox" aria-label="Select"></td><td><strong>Sensitive data written to logs</strong><span class="sub">CWE-532</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">PaymentService.java:112</td><td class="muted">—</td><td><span class="tag" data-disp>Open</span></td><td>Unassigned</td></tr>
+                    <tr data-row="fp1"><td><input type="checkbox" aria-label="Select"></td><td><strong>Sensitive data written to logs</strong><span class="sub">CWE-532</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">log/LogMasking.java:21</td><td><span class="tag tag--ai">AI: likely false positive</span></td><td><span class="tag" data-disp="fp1">Open</span></td><td>Unassigned</td></tr>
+                    <tr><td><input type="checkbox" aria-label="Select"></td><td><strong>Sensitive data written to logs</strong><span class="sub">CWE-532</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">card/CardController.java:88</td><td><span class="tag tag--ai">AI: needs review</span></td><td><span class="tag" data-disp>Open</span></td><td>Unassigned</td></tr>
+                    <tr><td><input type="checkbox" aria-label="Select"></td><td><strong>Predictable random number</strong><span class="sub">CWE-330</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">auth/TokenGenerator.java:19</td><td class="muted">—</td><td><span class="tag" data-disp>Open</span></td><td>Unassigned</td></tr>
+                  </tbody>
+                </table></div>
+              </div>
+              <p class="hint">Select rows to handle them at once, and undo right away. Click the first row, <a href="#finding">SQL query built by string concatenation</a>, to open its detail.</p>
+              <div class="toast" data-toast hidden><span data-toast-text></span><button class="btn btn--text" type="button" data-toast-undo>Undo</button></div>
+            </div>
+
+            <div class="panel" data-panel="project:license" role="tabpanel">
+              <div class="card" style="padding:0">
+                <div class="tbl-wrap"><table>
+                  <thead><tr><th>Finding</th><th>Severity</th><th>Component</th><th>Disposition</th><th>Assignee</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Strong copyleft license</strong><span class="sub">AGPL-3.0 · Depending on how the service is delivered, source disclosure may be required. Legal review is needed.</span></td><td><span class="sev sev--high">HIGH</span></td><td class="loc">com.itextpdf:kernel 7.2.5</td><td><span class="tag">Open</span></td><td>Unassigned</td></tr>
+                  </tbody>
+                </table></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Finding detail -->
+        <section class="screen" data-screen="finding" aria-labelledby="t-finding">
+          <div class="head">
+            <p class="crumb"><a href="#project">payment-api</a> / Finding detail</p>
+            <h2 id="t-finding">SQL query built by string concatenation</h2>
+            <div class="badges"><span class="sev sev--high">HIGH</span><span class="tag" data-disp="f-sql">Open</span><span class="tag tag--new">New</span><span class="tag tag--ai">AI: likely true positive 0.95</span></div>
+          </div>
+          <div class="body">
+            <div class="grid-2">
+              <div>
+                <div class="card">
+                  <h3>Finding information</h3>
+                  <dl class="facts">
+                    <div><dt>Location</dt><dd class="loc">src/main/java/com/sample/payment/order/OrderRepository.java:48</dd></div>
+                    <div><dt>Classification</dt><dd>CWE-89 SQL injection</dd></div>
+                    <div><dt>First found</dt><dd>2026-10-10 09:05</dd></div>
+                    <div><dt>Last seen</dt><dd>2026-10-10 09:05</dd></div>
+                    <div><dt>Found by</dt><dd>2 checks</dd></div>
+                    <div><dt>Recurred</dt><dd>No</dd></div>
+                  </dl>
+                </div>
+                <div class="card">
+                  <h3>Why it matters</h3>
+                  <p style="margin:0">When a value from outside is concatenated straight into a SQL statement, an attacker can put SQL syntax in that value to read other customers' orders or change data.</p>
+                </div>
+                <div class="card">
+                  <h3>How to fix it</h3>
+                  <ol class="steps">
+                    <li>Pass the value as a bind parameter (<code>?</code>) instead of concatenating it.</li>
+                    <li>Look for other queries built the same way and fix them together.</li>
+                  </ol>
+                </div>
+                <div class="card">
+                  <h3>Code</h3>
 <pre class="snippet"><code><span class="ln">46</span>public List&lt;Order&gt; findByCustomer(String customerId) {
 <span class="ln">47</span>    // Orders by customer
 <span class="hl"><span class="ln">48</span>    String sql = "SELECT * FROM orders WHERE customer_id = '" + customerId + "'";</span><span class="ln">49</span>    return jdbcTemplate.query(sql, orderMapper);
 <span class="ln">50</span>}</code></pre>
-            </div>
-            <div class="card">
-              <h3>Why it matters</h3>
-              <p>When external input is concatenated into a SQL statement, an attacker can inject SQL into that input to read other customers' orders or change data.</p>
-            </div>
-            <div class="card">
-              <h3>How to fix it</h3>
-              <p>Pass values as bind parameters (<code>?</code>) instead of concatenating strings. The statement and the values stay separate, so input is never interpreted as SQL.</p>
+                </div>
+              </div>
+              <div>
+                <div class="card ai">
+                  <div class="ai__head"><strong>AI judgment</strong><span class="tag tag--ai">AI: likely true positive</span><span class="muted">Confidence 0.95</span></div>
+                  <p style="margin:0"><code>customerId</code> flows from the request into the SQL statement without validation. This location can actually be exploited.</p>
+                  <h3 style="margin:14px 0 8px;font-size:14px">Suggested patch</h3>
+<pre class="snippet"><code><span class="del">- String sql = "SELECT * FROM orders WHERE customer_id = '" + customerId + "'";</span><span class="del">- return jdbcTemplate.query(sql, orderMapper);</span><span class="add">+ String sql = "SELECT * FROM orders WHERE customer_id = ?";</span><span class="add">+ return jdbcTemplate.query(sql, orderMapper, customerId);</span></code></pre>
+                  <p class="ai__note">The AI judgment is only a suggestion. It does not change the disposition.</p>
+                </div>
+                <div class="card">
+                  <h3>Disposition</h3>
+                  <form data-disp-form data-target="f-sql" data-need-date="Enter the risk acceptance deadline." data-need-reason="Enter a reason." data-saved="Recorded in the finding history." data-now="Just now">
+                    <div class="choice" role="radiogroup" aria-label="Disposition">
+                      <label><input type="radio" name="disp" value="progress" data-label="In progress" checked>True positive · In progress</label>
+                      <label><input type="radio" name="disp" value="fp" data-label="False positive">False positive</label>
+                      <label><input type="radio" name="disp" value="accept" data-label="Risk accepted">Accept risk</label>
+                    </div>
+                    <label class="field" data-accept-only hidden>Accept until<input type="date" name="until" min="2026-10-11"></label>
+                    <label class="field">Reason<textarea name="reason" placeholder="e.g. Switch to a bind parameter in the next release"></textarea></label>
+                    <p class="err" data-err role="alert" hidden></p>
+                    <div class="actions"><button class="btn btn--primary" type="submit">Save</button><span class="muted" data-saved-msg role="status"></span></div>
+                  </form>
+                </div>
+                <div class="card">
+                  <h3>History</h3>
+                  <ul class="history" data-history>
+                    <li><time>2026-10-10 09:06</time>AI judgment · likely true positive (confidence 0.95)</li>
+                    <li><time>2026-10-10 09:05</time>First found by a scan</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-          <div>
-            <div class="card">
-              <h3>Summary</h3>
-              <dl class="kv">
-                <dt>Severity</dt><dd><span class="sev sev--high">HIGH</span></dd>
-                <dt>Category</dt><dd>Secure coding</dd>
-                <dt>Type</dt><dd>CWE-89 SQL injection</dd>
-                <dt>Status</dt><dd><span class="tag tag--new">New</span></dd>
-                <dt>First seen</dt><dd>2026-10-10</dd>
-              </dl>
-            </div>
-            <div class="card verdict">
-              <div class="verdict__head"><span class="tag tag--ai">AI review</span><span class="verdict__label">True positive</span></div>
-              <p><code>customerId</code> flows from the request into the SQL statement without validation. This location can be exploited.</p>
-              <h3 style="margin-top:14px">Suggested fix</h3>
-<pre class="snippet"><code><span class="del">- String sql = "SELECT * FROM orders WHERE customer_id = '" + customerId + "'";</span>
-<span class="del">- return jdbcTemplate.query(sql, orderMapper);</span>
-<span class="add">+ String sql = "SELECT * FROM orders WHERE customer_id = ?";</span>
-<span class="add">+ return jdbcTemplate.query(sql, orderMapper, customerId);</span></code></pre>
-              <p class="sub" style="margin-top:10px">AI judgments are suggestions. A reviewer makes the final call.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- AI review -->
-      <section class="screen" data-screen="review" aria-labelledby="t-review">
-        <h2 id="t-review">AI false positives</h2>
-        <p class="lead">Findings that AI judged likely to be false positives. Once a reviewer confirms them against the evidence, they are removed from the counts.</p>
-        <form data-review-form data-done="Confirmed {n} as false positives. The dashboard counts went down too." data-none="Select the findings to confirm.">
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Select</th><th>Project</th><th>Finding</th><th>AI evidence</th></tr></thead>
-              <tbody>
-                <tr data-fp="fp1" data-dec="payment-api:sast payment-api:total payment-api:ai all:ai payment-api:g-log"><td><input type="checkbox" aria-label="Select"></td><td>payment-api</td><td>Sensitive data written to logs<br><code class="sub">LogMasking.java:21</code></td><td>The card number is masked to the first 6 and last 4 digits before logging.</td></tr>
-                <tr data-fp="fp2" data-dec="payment-api:sast payment-api:total payment-api:ai all:ai payment-api:g-path"><td><input type="checkbox" aria-label="Select"></td><td>payment-api</td><td>Path traversal<br><code class="sub">FileController.java:57</code></td><td>The file name is checked against an allowlist before it is used in a path.</td></tr>
-                <tr data-fp="fp3" data-dec="partner-portal:sast partner-portal:total partner-portal:ai all:ai"><td><input type="checkbox" aria-label="Select"></td><td>partner-portal</td><td>Unsanitized HTML insertion<br><code class="sub">NoticeView.tsx:34</code></td><td>The HTML is sanitized to allowed tags before insertion.</td></tr>
-                <tr data-empty hidden><td colspan="4">Nothing left to confirm.</td></tr>
-              </tbody>
-            </table>
+        <!-- Review inbox -->
+        <section class="screen" data-screen="inbox" aria-labelledby="t-inbox">
+          <div class="head">
+            <h2 id="t-inbox">Review inbox</h2>
+            <p class="lead">Only the findings a person needs to decide. Every decision is kept in the finding history and can be undone.</p>
+            <div class="tabs" role="tablist" aria-label="Review type">
+              <button type="button" role="tab" data-tab="inbox:ai" aria-selected="true">AI false-positive proposals<span class="cnt" data-counter="inbox:ai">3</span></button>
+              <button type="button" role="tab" data-tab="inbox:recheck" aria-selected="false">Code changed<span class="cnt" data-counter="inbox:recheck">1</span></button>
+              <button type="button" role="tab" data-tab="inbox:expire" aria-selected="false">Acceptance expired<span class="cnt" data-counter="inbox:expire">1</span></button>
+            </div>
           </div>
-          <div class="actions">
-            <button class="btn btn--primary" type="submit">Confirm selected</button>
-            <button class="btn" type="submit" name="all">Confirm all</button>
-            <span class="status" data-status role="status"></span>
+          <div class="body">
+            <div class="grid-2">
+              <div>
+                <div class="panel is-active" data-panel="inbox:ai" role="tabpanel" data-review-list data-tpl="{done} of {total} decided">
+                  <p class="hint" style="margin:0 0 12px">Findings AI judged likely to be false positives. They stay in the counts until a person decides.</p>
+                  <div class="progress"><span data-progress-text>0 of 3 decided</span><span class="bar"><span data-progress-bar style="width:0"></span></span></div>
+                  <div class="card review" data-card>
+                    <div class="review__head"><strong data-title>Sensitive data written to logs</strong><span class="sev sev--medium">MEDIUM</span><span class="tag tag--ai">AI: likely false positive 0.97</span></div>
+                    <p class="review__where" data-where>payment-api · log/LogMasking.java:21</p>
+                    <div class="reason"><b>AI evidence</b>The card number is masked to the first 6 and last 4 digits before it is logged. The full card number never reaches the log.</div>
+<pre class="snippet"><code><span class="ln">20</span>String masked = CardMask.keepEnds(cardNo, 6, 4);
+<span class="hl"><span class="ln">21</span>log.info("payment request card={}", masked);</span></code></pre>
+                    <div class="actions">
+                      <button class="btn btn--primary" type="button" data-decide data-label="False positive" data-keys="inbox inbox:ai cat:sast all:total payment-api:sast payment-api:total" data-hide-row="fp1">Mark false positive</button>
+                      <button class="btn" type="button" data-decide data-label="In progress" data-keys="inbox inbox:ai" data-set-disp="fp1">True positive · In progress</button>
+                      <button class="btn btn--text" type="button" data-skip>Skip</button>
+                    </div>
+                  </div>
+                  <div class="card review" data-card>
+                    <div class="review__head"><strong data-title>Path traversal</strong><span class="sev sev--high">HIGH</span><span class="tag tag--ai">AI: likely false positive 0.91</span></div>
+                    <p class="review__where" data-where>payment-api · file/FileController.java:57</p>
+                    <div class="reason"><b>AI evidence</b>The file name is checked against an allow list before it is used in a path. Names not on the list are rejected earlier.</div>
+<pre class="snippet"><code><span class="ln">55</span>if (!ALLOWED.contains(name)) throw new BadRequest();
+<span class="ln">56</span>Path base = Paths.get(EXPORT_DIR);
+<span class="hl"><span class="ln">57</span>return Files.readAllBytes(base.resolve(name));</span></code></pre>
+                    <div class="actions">
+                      <button class="btn btn--primary" type="button" data-decide data-label="False positive" data-keys="inbox inbox:ai cat:sast all:total payment-api:sast payment-api:total" data-hide-row="fp2">Mark false positive</button>
+                      <button class="btn" type="button" data-decide data-label="In progress" data-keys="inbox inbox:ai" data-set-disp="fp2">True positive · In progress</button>
+                      <button class="btn btn--text" type="button" data-skip>Skip</button>
+                    </div>
+                  </div>
+                  <div class="card review" data-card>
+                    <div class="review__head"><strong data-title>Unsanitized HTML insertion</strong><span class="sev sev--medium">MEDIUM</span><span class="tag tag--ai">AI: likely false positive 0.88</span></div>
+                    <p class="review__where" data-where>partner-portal · notice/NoticeView.tsx:34</p>
+                    <div class="reason"><b>AI evidence</b>The content is sanitized to allowed tags before insertion. The sanitizer is applied to every notice body earlier in the same file.</div>
+                    <div class="actions">
+                      <button class="btn btn--primary" type="button" data-decide data-label="False positive" data-keys="inbox inbox:ai cat:sast all:total partner-portal:total">Mark false positive</button>
+                      <button class="btn" type="button" data-decide data-label="In progress" data-keys="inbox inbox:ai">True positive · In progress</button>
+                      <button class="btn btn--text" type="button" data-skip>Skip</button>
+                    </div>
+                  </div>
+                  <p class="empty" data-empty hidden>Nothing to review.</p>
+                </div>
+
+                <div class="panel" data-panel="inbox:recheck" role="tabpanel" data-review-list data-tpl="{done} of {total} decided">
+                  <p class="hint" style="margin:0 0 12px">Findings that returned to Open because the code changed after they were handled. See the earlier reason next to the changed code.</p>
+                  <div class="progress"><span data-progress-text>0 of 1 decided</span><span class="bar"><span data-progress-bar style="width:0"></span></span></div>
+                  <div class="card review" data-card>
+                    <div class="review__head"><strong data-title>Sensitive data written to logs</strong><span class="sev sev--medium">MEDIUM</span><span class="tag">Previously · False positive</span></div>
+                    <p class="review__where" data-where>batch-settlement · job/SettlementJob.java:142</p>
+                    <div class="reason"><b>Earlier reason</b>Only the masked account number is logged (2026-09-02, B. Park)</div>
+<pre class="snippet"><code><span class="del">- log.info("settlement account={}", Mask.account(acct));</span><span class="add">+ log.info("settlement account={} raw={}", Mask.account(acct), acct);</span></code></pre>
+                    <div class="actions">
+                      <button class="btn btn--primary" type="button" data-decide data-label="In progress" data-keys="inbox inbox:recheck">True positive · In progress</button>
+                      <button class="btn" type="button" data-decide data-label="False positive" data-keys="inbox inbox:recheck cat:sast all:total batch-settlement:total">False positive again</button>
+                    </div>
+                  </div>
+                  <p class="empty" data-empty hidden>Nothing to review.</p>
+                </div>
+
+                <div class="panel" data-panel="inbox:expire" role="tabpanel" data-review-list data-tpl="{done} of {total} decided">
+                  <p class="hint" style="margin:0 0 12px">Findings that returned to Open because the risk acceptance deadline passed. Accepting again needs a new deadline and reason.</p>
+                  <div class="progress"><span data-progress-text>0 of 1 decided</span><span class="bar"><span data-progress-bar style="width:0"></span></span></div>
+                  <div class="card review" data-card>
+                    <div class="review__head"><strong data-title>Weak hash algorithm</strong><span class="sev sev--medium">MEDIUM</span><span class="tag tag--warn">Accepted until 2026-10-01 · passed</span></div>
+                    <p class="review__where" data-where>batch-settlement · util/HashUtil.java:31</p>
+                    <div class="reason"><b>Earlier reason</b>The partner interface requires MD5. Accepted until the partner changes its spec (2026-07-01, B. Park)</div>
+                    <div class="actions">
+                      <button class="btn btn--primary" type="button" data-decide data-label="In progress" data-keys="inbox inbox:expire">Set to In progress</button>
+                      <button class="btn" type="button" data-decide data-label="Risk accepted · until 2027-01-31" data-keys="inbox inbox:expire cat:sast all:total batch-settlement:total">Extend (2027-01-31)</button>
+                    </div>
+                  </div>
+                  <p class="empty" data-empty hidden>Nothing to review.</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3>Recent decisions</h3>
+                <ul class="recent" data-recent data-now="Just now" data-undo="Undo">
+                  <li><b>Risk accepted</b> · Test dummy key<span class="sub">batch-settlement · B. Park · 2026-10-09 17:12</span></li>
+                  <li><b>False positive</b> · OS command injection<span class="sub">partner-portal · B. Park · 2026-10-09 16:40</span></li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </form>
-      </section>
+        </section>
+
+        <!-- Agents -->
+        <section class="screen" data-screen="agents" aria-labelledby="t-agents">
+          <div class="head">
+            <p class="crumb">Scan operations</p>
+            <h2 id="t-agents">Agents</h2>
+            <p class="lead">Create install commands for developer PCs and manage the PCs that are connected.</p>
+          </div>
+          <div class="body">
+            <div class="card">
+              <h3>Create an install command</h3>
+              <p class="card__sub">One command per PC. Running it prepares scanning and sets up auto-start.</p>
+              <form class="form-line" data-install-form data-server="https://jikimi.sample.example" data-need-label="Enter a PC name." data-copy="Copy" data-copied="Copied" data-pending="Waiting for install" data-now="Just now">
+                <label class="field">PC name<input name="label" maxlength="60" placeholder="e.g. Payments team, Kim's MacBook"></label>
+                <button class="btn btn--primary" type="submit" style="height:36px">Create install command</button>
+              </form>
+              <p class="err" data-err role="alert" hidden style="margin-top:8px"></p>
+              <div data-cmd-box hidden>
+                <div class="cmd"><code data-cmd></code><button class="btn" type="button" data-copy-btn>Copy</button></div>
+                <ul class="notes">
+                  <li>The command is shown only now. If you lose it, create a new one.</li>
+                  <li>After installing, run <code>jikimi scan .</code> in the project folder. Results appear for the reviewer on this screen.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card" style="padding:0">
+              <div style="padding:20px 22px 8px"><h3 style="margin:0">PCs in use</h3></div>
+              <div class="tbl-wrap"><table>
+                <thead><tr><th>PC name</th><th>OS</th><th>Agent version</th><th>Last connected</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody data-pc-list data-cut="Disconnected" data-cut-btn="Disconnect">
+                  <tr><td>Payments team, Lee's MacBook Pro</td><td>macOS · Apple silicon</td><td>0.1.0</td><td>2026-10-10 09:05</td><td><span class="dot"></span>Connected</td><td><button class="btn btn--danger" type="button" data-cut-row>Disconnect</button></td></tr>
+                  <tr><td>Partner team, Choi's MacBook Air</td><td>macOS · Apple silicon</td><td>0.1.0</td><td>2026-10-09 18:42</td><td><span class="dot"></span>Connected</td><td><button class="btn btn--danger" type="button" data-cut-row>Disconnect</button></td></tr>
+                  <tr><td>Settlement team shared iMac</td><td>macOS · Intel</td><td>0.1.0</td><td>2026-09-28 11:20</td><td><span class="dot dot--off"></span>Offline</td><td><button class="btn btn--danger" type="button" data-cut-row>Disconnect</button></td></tr>
+                </tbody>
+              </table></div>
+            </div>
+            <p class="hint">Agents check for new versions and update themselves. A disconnected PC can no longer send results; the other PCs keep scanning.</p>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </main>
