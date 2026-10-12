@@ -1,8 +1,10 @@
-# AI 코드보안 지킴이
+<img src="docs/brand/jikimi-symbol.svg" width="56" height="56" alt="Jikimi 심볼">
+
+# Jikimi
 
 [English](README.md) · **한국어**
 
-코드의 보안 문제를 찾고, AI와 사람이 함께 검토하고, 조직의 정책에 따라 판단하고, 조치한 뒤 다시 확인하는 과정을 하나로 잇는 솔루션입니다. [한비엣테크](https://hanvietech.com)가 개발하고 있습니다.
+Jikimi(지키미)는 코드의 보안 문제를 찾고, AI와 사람이 함께 검토하고, 조직의 정책에 따라 판단하고, 조치한 뒤 다시 확인하는 과정을 하나로 잇는 AI 코드보안 에이전트입니다. [한비엣테크](https://hanvietech.com)가 개발하고 있습니다.
 
 > **개발 중인 제품입니다.** 이 저장소는 제품 소개와 사용 방법을 담은 공개 문서이며, 제품 소스코드는 공개하지 않습니다. 소개된 기능과 구성은 개발 과정에서 달라질 수 있습니다.
 
@@ -45,7 +47,7 @@
 
 ## 얼리 액세스
 
-출시 전 시연과 상세 내용을 받아 보시려면 [hanvietech.com의 문의 양식](https://hanvietech.com/#contact)에서 AI 코드보안 지킴이 얼리 액세스를 선택해 남겨 주세요. 이메일 [ceo@hanvietech.com](mailto:ceo@hanvietech.com)으로도 받습니다.
+출시 전 시연과 상세 내용을 받아 보시려면 [hanvietech.com의 문의 양식](https://hanvietech.com/#contact)에서 Jikimi 얼리 액세스를 선택해 남겨 주세요. 이메일 [ceo@hanvietech.com](mailto:ceo@hanvietech.com)으로도 받습니다.
 
 ---
 

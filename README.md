@@ -1,8 +1,10 @@
-# AI Code Security Guardian
+<img src="docs/brand/jikimi-symbol.svg" width="56" height="56" alt="Jikimi symbol">
+
+# Jikimi
 
 **English** · [한국어](README.ko.md)
 
-A product that connects the whole process in one workflow: finding security issues in code, reviewing them with AI and people together, deciding according to your organization's policy, and verifying again after the fix. Built by [Hanvietech](https://hanvietech.com/en/).
+Jikimi is an AI code security agent that connects the whole process in one workflow: finding security issues in code, reviewing them with AI and people together, deciding according to your organization's policy, and verifying again after the fix. Built by [Hanvietech](https://hanvietech.com/en/).
 
 > **In development.** This repository holds public documentation: a product overview and how to use it. The product source code is not public. Features and structure described here may change.
 
@@ -45,7 +47,7 @@ When the scan finishes, the results appear on the security reviewer's dashboard.
 
 ## Early access
 
-To receive a pre-release demo and details, choose AI Code Security Guardian early access in the [contact form on hanvietech.com](https://hanvietech.com/en/#contact), or email [ceo@hanvietech.com](mailto:ceo@hanvietech.com).
+To receive a pre-release demo and details, choose Jikimi early access in the [contact form on hanvietech.com](https://hanvietech.com/en/#contact), or email [ceo@hanvietech.com](mailto:ceo@hanvietech.com).
 
 ---
 
