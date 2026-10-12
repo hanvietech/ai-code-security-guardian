@@ -6,7 +6,7 @@
 
 Jikimi is an AI code security agent that connects the whole process in one workflow: finding security issues in code, reviewing them with AI and people together, deciding according to your organization's policy, and verifying again after the fix. Built by [Hanvietech](https://hanvietech.com/en/).
 
-> **In development.** This repository holds public documentation: a product overview and how to use it. The product source code is not public. Features and structure described here may change.
+> **Coming soon.** This product is preparing for launch. This repository holds public documentation: a product overview and how to use it. The product source code is not public. Features and structure described here may change before release.
 
 **[See the demo](https://demo.hanvietech.com/en/)** · Result screens built with sample data. No real customer data is shown.
 
