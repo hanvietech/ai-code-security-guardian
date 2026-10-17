@@ -218,11 +218,16 @@
                     <tr><td><input type="checkbox" aria-label="Select"></td><td><strong>Sensitive data written to logs</strong><span class="sub">CWE-532</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">PaymentService.java:112</td><td class="muted">—</td><td><span class="tag" data-disp>Open</span></td><td>Unassigned</td></tr>
                     <tr data-row="fp1"><td><input type="checkbox" aria-label="Select"></td><td><strong>Sensitive data written to logs</strong><span class="sub">CWE-532</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">log/LogMasking.java:21</td><td><span class="tag tag--ai">AI: likely false positive</span></td><td><span class="tag" data-disp="fp1">Open</span></td><td>Unassigned</td></tr>
                     <tr><td><input type="checkbox" aria-label="Select"></td><td><strong>Sensitive data written to logs</strong><span class="sub">CWE-532</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">card/CardController.java:88</td><td><span class="tag tag--ai">AI: needs review</span></td><td><span class="tag" data-disp>Open</span></td><td>Unassigned</td></tr>
-                    <tr><td><input type="checkbox" aria-label="Select"></td><td><strong>Predictable random number</strong><span class="sub">CWE-330</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">auth/TokenGenerator.java:19</td><td class="muted">—</td><td><span class="tag" data-disp>Open</span></td><td>Unassigned</td></tr>
+                    <tr><td><input type="checkbox" aria-label="Select"></td><td><strong>Predictable random number</strong><span class="sub">CWE-330 · <span class="tag">Rule group · 4 findings · 3 files</span></span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">auth/TokenGenerator.java and 2 more files</td><td class="muted">—</td><td><span class="tag" data-disp>Open</span></td><td>Unassigned</td></tr>
                   </tbody>
                 </table></div>
+                <details class="excluded">
+                  <summary>Excluded from review · 38 excluded</summary>
+                  <p>Results from bundled, minified, third-party, and generated files. They stay on record and are tracked across re-scans, but are left out of review.</p>
+                  <ul><li class="loc">web/vendor/chart.min.js · 23</li><li class="loc">build/generated/QOrder.java · 15</li></ul>
+                </details>
               </div>
-              <p class="hint">Select rows to handle them at once, and undo right away. Click the first row, <a href="#finding">SQL query built by string concatenation</a>, to open its detail.</p>
+              <p class="hint">Findings with the same answer wherever they appear are grouped into one rule group row and handled with one decision. Select rows to handle them at once, and undo right away. Click the first row, <a href="#finding">SQL query built by string concatenation</a>, to open its detail.</p>
               <div class="toast" data-toast hidden><span data-toast-text></span><button class="btn btn--text" type="button" data-toast-undo>Undo</button></div>
             </div>
 
@@ -291,10 +296,11 @@
                   <h3>Disposition</h3>
                   <form data-disp-form data-target="f-sql" data-need-date="Enter the risk acceptance deadline." data-need-reason="Enter a reason." data-saved="Recorded in the finding history." data-now="Just now">
                     <div class="choice" role="radiogroup" aria-label="Disposition">
-                      <label><input type="radio" name="disp" value="progress" data-label="In progress" checked>True positive · In progress</label>
-                      <label><input type="radio" name="disp" value="fp" data-label="False positive">False positive</label>
-                      <label><input type="radio" name="disp" value="accept" data-label="Risk accepted">Accept risk</label>
+                      <label><input type="radio" name="disp" value="progress" data-label="In progress" data-hint="Someone is fixing it. It changes to resolved when a re-scan no longer finds it." checked>In progress</label>
+                      <label><input type="radio" name="disp" value="fp" data-label="False positive" data-hint="Not a real issue. It leaves the list and stays a false positive if the same code appears again.">False positive</label>
+                      <label><input type="radio" name="disp" value="accept" data-label="Risk accepted" data-hint="You choose not to fix it until the deadline. When the deadline passes, it returns to the review inbox.">Risk accepted</label>
                     </div>
+                    <p class="disp-hint" data-disp-hint></p>
                     <label class="field" data-accept-only hidden>Accept until<input type="date" name="until" min="2026-10-11"></label>
                     <label class="field">Reason<textarea name="reason" placeholder="e.g. Switch to a bind parameter in the next release"></textarea></label>
                     <p class="err" data-err role="alert" hidden></p>

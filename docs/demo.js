@@ -122,9 +122,17 @@
     const saved = form.querySelector('[data-saved-msg]');
     const history = document.querySelector('[data-history]');
 
-    form.addEventListener('change', () => {
-      acceptOnly.hidden = form.elements.disp.value !== 'accept';
-    });
+    const hint = form.querySelector('[data-disp-hint]');
+
+    // 고른 처분의 뜻을 선택지 아래에 보여 준다.
+    function showHint() {
+      const choice = form.querySelector('input[name="disp"]:checked');
+      acceptOnly.hidden = choice.value !== 'accept';
+      hint.textContent = choice.dataset.hint;
+    }
+
+    form.addEventListener('change', showHint);
+    showHint();
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       const choice = form.querySelector('input[name="disp"]:checked');

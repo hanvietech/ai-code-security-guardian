@@ -30,21 +30,22 @@ Jikimi is a security agent that uses AI services to find security issues in code
 
 - **Today**: The home screen starts with what needs attention: findings awaiting review, secrets that actually work, library vulnerabilities fixed by upgrading, and projects with scan problems.
 - **The same issue counted once**: Shows open findings by project and category, counting the same issue once. New, recurring, and resolved findings are tracked across scans.
-- **Why it matters and how to fix it**: Every finding explains why it is risky and how to fix it. Library vulnerabilities show the fixed version, and licenses show the review needed.
-- **Search and filter**: Search by project, package, or CVE, and filter by category, severity, disposition, assignee, period, and more.
+- **One decision for one pattern**: Secure coding findings that have the same answer wherever they appear are grouped into a rule group and handled with one decision, while findings whose answer depends on the input are reviewed by location. Results from bundled, minified, third-party, and generated files stay on record and are tracked across re-scans, but are folded away from review.
+- **Why it matters and how to fix it**: Every finding explains why it is risky and how to fix it. Library vulnerabilities show the fixed version, exploit risk, and call path, and licenses show the review needed.
+- **Search and filter**: Search by project, package, or CVE, and filter by category, severity, disposition, assignee, period, and more. Screens follow your browser setting for light or dark.
 
 ### Reviewing and deciding
 
-- **AI judgment**: AI estimates whether a finding is a true positive, a false positive, or needs review, and shows its evidence and a patch suggested for your code. The AI judgment is only a suggestion and never changes the disposition.
+- **AI judgment**: AI estimates whether a finding is a true positive, a false positive, or needs review, and shows its evidence and a patch suggested for your code. It also summarizes library risks. The AI judgment is only a suggestion and never changes the disposition.
 - **Review inbox**: Collects only what a person needs to decide: findings AI judged likely to be false positives, findings whose code changed after they were handled, and findings whose risk acceptance expired.
-- **Dispositions and history**: Record In progress, False positive, or Risk accepted (with a required deadline) along with a reason, and keep an assignee and notes. Handle many findings at once and undo right away; every change is kept in the finding history.
-- **Exception rules**: For recurring findings, set a path or scope so the same disposition applies from now on.
+- **Dispositions and history**: Record In progress, False positive, or Risk accepted (with a required deadline) along with a reason, and keep an assignee and notes. The meaning of the chosen disposition appears right below it. Handle many findings at once and undo right away; every change is kept in the finding history.
+- **Exception rules**: For recurring findings, set a path and the projects it covers (several, or the whole company) so the same disposition applies from now on.
 
 ### Operations
 
 - **Roles and scope**: Set Admin, Member, and Viewer roles with project scope, and add reviewers with one-time invite links.
 - **Scan operations**: Manage scan history, failures and missing installs, scheduled scans, and connected PCs in one place.
-- **One-line install**: Install the agent on a developer PC with a single command created in the dashboard. The agent checks for new versions and updates itself.
+- **One-line install**: Install the agent on a developer PC with a single command created in the dashboard. The agent checks for new versions and updates itself. Installs and updates verify signatures and file integrity, and if the agent cannot connect after an update, it rolls back to the previous version.
 
 ## How to use it
 

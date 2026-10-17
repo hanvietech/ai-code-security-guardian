@@ -218,11 +218,16 @@
                     <tr><td><input type="checkbox" aria-label="선택"></td><td><strong>로그에 민감정보 출력</strong><span class="sub">CWE-532</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">PaymentService.java:112</td><td class="muted">—</td><td><span class="tag" data-disp>미처분</span></td><td>미지정</td></tr>
                     <tr data-row="fp1"><td><input type="checkbox" aria-label="선택"></td><td><strong>로그에 민감정보 출력</strong><span class="sub">CWE-532</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">log/LogMasking.java:21</td><td><span class="tag tag--ai">AI 오탐 추정</span></td><td><span class="tag" data-disp="fp1">미처분</span></td><td>미지정</td></tr>
                     <tr><td><input type="checkbox" aria-label="선택"></td><td><strong>로그에 민감정보 출력</strong><span class="sub">CWE-532</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">card/CardController.java:88</td><td><span class="tag tag--ai">AI 검토 필요</span></td><td><span class="tag" data-disp>미처분</span></td><td>미지정</td></tr>
-                    <tr><td><input type="checkbox" aria-label="선택"></td><td><strong>예측 가능한 난수 사용</strong><span class="sub">CWE-330</span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">auth/TokenGenerator.java:19</td><td class="muted">—</td><td><span class="tag" data-disp>미처분</span></td><td>미지정</td></tr>
+                    <tr><td><input type="checkbox" aria-label="선택"></td><td><strong>예측 가능한 난수 사용</strong><span class="sub">CWE-330 · <span class="tag">룰 묶음 · 구성원 4건 · 파일 3개</span></span></td><td><span class="sev sev--medium">MEDIUM</span></td><td class="loc">auth/TokenGenerator.java 외 2개 파일</td><td class="muted">—</td><td><span class="tag" data-disp>미처분</span></td><td>미지정</td></tr>
                   </tbody>
                 </table></div>
+                <details class="excluded">
+                  <summary>판정 제외 · 제외됨 38건</summary>
+                  <p>번들 · 압축 · 외부 라이브러리 · 생성 파일의 결과입니다. 기록과 재검사 추적은 유지하며 판정 대상에서만 제외합니다.</p>
+                  <ul><li class="loc">web/vendor/chart.min.js · 23건</li><li class="loc">build/generated/QOrder.java · 15건</li></ul>
+                </details>
               </div>
-              <p class="hint">행을 골라 한 번에 처리하고 바로 되돌릴 수 있습니다. 첫 줄 <a href="#finding">SQL 쿼리 문자열 결합</a>을 누르면 상세 화면이 열립니다.</p>
+              <p class="hint">위치가 달라도 답이 같은 항목은 룰 묶음 한 줄로 모아 한 번에 처리합니다. 행을 골라 한 번에 처리하고 바로 되돌릴 수 있습니다. 첫 줄 <a href="#finding">SQL 쿼리 문자열 결합</a>을 누르면 상세 화면이 열립니다.</p>
               <div class="toast" data-toast hidden><span data-toast-text></span><button class="btn btn--text" type="button" data-toast-undo>되돌리기</button></div>
             </div>
 
@@ -291,10 +296,11 @@
                   <h3>처분</h3>
                   <form data-disp-form data-target="f-sql" data-need-date="위험 수용 기한을 입력하세요." data-need-reason="사유를 입력하세요." data-saved="항목 이력에 기록했습니다." data-now="방금">
                     <div class="choice" role="radiogroup" aria-label="처분">
-                      <label><input type="radio" name="disp" value="progress" data-label="처리 중" checked>정탐 · 처리 중</label>
-                      <label><input type="radio" name="disp" value="fp" data-label="오탐">오탐</label>
-                      <label><input type="radio" name="disp" value="accept" data-label="위험 수용">위험 수용</label>
+                      <label><input type="radio" name="disp" value="progress" data-label="처리 중" data-hint="담당자가 수정하는 중입니다. 재검사에서 사라지면 해결로 바뀝니다." checked>처리 중</label>
+                      <label><input type="radio" name="disp" value="fp" data-label="오탐" data-hint="실제 문제가 아닙니다. 목록에서 빠지고 같은 코드가 다시 나와도 오탐으로 유지됩니다.">오탐</label>
+                      <label><input type="radio" name="disp" value="accept" data-label="위험 수용" data-hint="알고도 기한까지 고치지 않기로 합니다. 기한이 지나면 검토함에 다시 나타납니다.">위험 수용</label>
                     </div>
+                    <p class="disp-hint" data-disp-hint></p>
                     <label class="field" data-accept-only hidden>수용 기한<input type="date" name="until" min="2026-10-11"></label>
                     <label class="field">사유<textarea name="reason" placeholder="예: 다음 배포에서 바인딩 변수로 수정"></textarea></label>
                     <p class="err" data-err role="alert" hidden></p>
